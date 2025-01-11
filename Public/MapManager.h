@@ -21,7 +21,7 @@ public:
 	MapManager(int mapLevel);
 	void MapPrint() const;
 	void SetCharacterPosition(int x, int y);
-	const Pos RandomPos();
+	const Pos RandomPos() const;
 	bool IsClear() const;
 	~MapManager();
 };
@@ -71,7 +71,7 @@ void MapManager::SetCharacterPosition(int x, int y)	// 현재 캐릭터가 위치한 곳을
 	_map[_characterPos.y][_characterPos.x] = '!';
 }
 
-const Pos MapManager::RandomPos()	// 랜덤한 좌표를 생성하는 함수
+const Pos MapManager::RandomPos() const	// 랜덤한 좌표를 생성하는 함수
 {
 	Pos temp;
 
