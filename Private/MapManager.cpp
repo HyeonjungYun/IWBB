@@ -36,7 +36,7 @@ void MapManager::MapPrint() const	// 현재 맵을 프린트
 	}
 }
 
-void MapManager::SetCharacterPosition(int x, int y)	// 현재 캐릭터가 위치한 곳을 수정
+void MapManager::SetCharacterPosition(int x, int y)	// 현재 캐릭터가 위치한 곳을 수정 
 {
 	_characterPos.x = x;
 	_characterPos.y = y;
