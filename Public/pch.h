@@ -9,4 +9,11 @@
 #include <cstdlib>
 
 using namespace std;
+
+typedef struct
+{
+	int x;
+	int y;
+}Pos;
+
 #endif
