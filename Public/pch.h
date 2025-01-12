@@ -6,6 +6,7 @@
 #include <string>
 #include <ctime>
 #include <random>
+#include <cstdlib>
 
 using namespace std;
 #endif
