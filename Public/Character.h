@@ -23,11 +23,12 @@ public:
     void TakeDamage(int damage);
     void CharacterLevelUp();
     void AddItemToInventory(ItemList::Item TempItem);
+    void PrintCharacter() const;
+    void PrintInventory();
 
  //테스트를 위한 
     int _mapLevel;
     void CharacterSkill() { cout << "캐릭터 스킬 사용, 아무것도 없음" << endl; }
-    void PrintCharacter() const;
 
 public:
     string _CharacterName;
