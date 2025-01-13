@@ -1,12 +1,11 @@
-﻿#include "Monster.h"
-#include "Tanker.h"
-#include "Healer.h"
-#include "Character.h"
-#include "DungeonManager.h"
 #include "MapManager.h"
 
 int main()
 {
+	MapManager* map = new MapManager(3);
+
+	map->MapPrint();
+=======
 	/*
 	Monster* mon = new Tanker("탱커", 100, 0, 5, 10);
 	cout << mon->getName() << "의 공격력: " << mon->getAttack() << endl;
