@@ -1,21 +1,34 @@
 ﻿#include "Character.h"
 
-Character::Character() : _Charactername("BBman"), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1)
+Character::Character()
 {
+	_CharacterName = "BBman";
+	_CharacterHP = 200;
+	_CharacterEXP = 0;
+	_CharacterLevel = 1;
+	_CharacterGold = 0;
+	_CharacterAttack = 10;
+	_mapLevel = 1;
 	_CurrentInventory[ItemList::POTION] = 0;
 	_CurrentInventory[ItemList::BB_BOX] = 0;
 }
 
 Character::Character(string Charactername)
-	:_Charactername(Charactername), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) 
 {
+	_CharacterName = "BBman";
+	_CharacterHP = 200;
+	_CharacterEXP = 0;
+	_CharacterLevel = 1;
+	_CharacterGold = 0;
+	_CharacterAttack = 10;
+	_mapLevel = 1;
 	_CurrentInventory[ItemList::POTION] = 0;
 	_CurrentInventory[ItemList::BB_BOX] = 0;
 }
 
 string Character::GetName() 
 { 
-	return _Charactername; 
+	return _CharacterName; 
 }
 
 int Character::GetHp() const
@@ -71,12 +84,13 @@ void Character::CharacterLevelUp()
 {
 	_CharacterHP += ((_CharacterEXP / 100) * 2) * 20;
 	_CharacterAttack += ((_CharacterEXP / 100) * 2) * 20;
+	_CharacterLevel += (_CharacterEXP / 100);
 	_CharacterEXP %= 100;
 }
 
 void Character::PrintCharacter() const
 {
-	cout << "(" << _Charactername << ")" <<endl;
+	cout << "(" << _CharacterName << ")"  << " Level : "  << _CharacterLevel << endl;
 	cout << " 보유 골드 : " << _CharacterGold << endl;
 	cout << " HP : " << _CharacterHP << ", ";
 	cout << " Attack : " << _CharacterAttack << ", ";

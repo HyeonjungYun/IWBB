@@ -7,9 +7,8 @@ using namespace std;
 class Character
 {
 public:
-    Character() : _Charactername("BBman"), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) {}
-    Character(string Charactername)
-        :_Charactername(Charactername), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) {}
+    Character();
+    Character(string Charactername);
     ~Character();
 
     string GetName();
@@ -31,7 +30,7 @@ public:
     void PrintCharacter() const;
 
 public:
-    string _Charactername;
+    string _CharacterName;
     int _CharacterHP;
     int _CharacterEXP;
     int _CharacterLevel;
