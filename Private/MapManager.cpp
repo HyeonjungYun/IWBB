@@ -1,3 +1,4 @@
+
 #include "MapManager.h"
 
 MapManager::MapManager(int mapLevel)	// 맵 생성자, 맵을 기본적인 맵을 생성, 시작 좌표와 끝 좌표를 생성 후 할당
@@ -57,9 +58,9 @@ Pos MapManager::GetCharacterPosition() const
 void MapManager::RenewDungeonStatus()
 {
 	_Map = _ClearedMap;
-	
-	_Map[_EndPos.x][_EndPos.y] = 'E';
-	_Map[_CharacterPos.x][_CharacterPos.y] = '!';
+
+	_Map[_EndPos.y][_EndPos.x] = 'E';
+	_Map[_CharacterPos.y][_CharacterPos.x] = '!';
 }
 
 const Pos MapManager::RandomPos() const	// 랜덤한 좌표를 생성하는 함수
@@ -84,7 +85,7 @@ bool MapManager::IsDungeonClear() const	// 현재 캐릭터 위치와 끝 지점의 위치가 �
 
 void MapManager::RoomClear()
 {
-	_ClearedMap[_CharacterPos.x][_CharacterPos.y] = 'C';
+	_ClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
 }
 
 MapManager::~MapManager()	// 소멸자
