@@ -42,7 +42,7 @@ void GameManager::GamePlaying()
 		}
 		if (choice == "3")
 		{
-			break;
+			_Character->PrintInventory();
 			continue;
 		}
 		if (choice == "4")
