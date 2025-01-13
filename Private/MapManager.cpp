@@ -89,6 +89,17 @@ void MapManager::RoomClear()
 
 }
 
+int MapManager::GetMapLevel() const
+{
+	return _MapLevel;
+}
+
+const bool MapManager::IsClearRoom() const		// 현재 있는 방이 클리어된 방인지, 몬스터가 나와야 하는 방인지 확인
+{
+	if (_ClearedMap[_CharacterPos.y][_CharacterPos.x] == 'C') return true;
+	return false;
+}
+
 MapManager::~MapManager()	// 소멸자
 {
 	delete this;
