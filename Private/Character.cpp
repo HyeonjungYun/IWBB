@@ -70,6 +70,11 @@ void Character::PrintCharacter() const
 	cout << " EXP : " << _CharacterEXP << endl;
 }
 
+void Character::AddItemToInventory(ItemList TempItem)
+{
+	_CurrentInventory.push_back(TempItem);
+}
+
 Character::~Character()
 {
 	delete this;

@@ -1,6 +1,6 @@
-﻿#pragma once
-#include <iostream>
-#include <string>
+﻿#ifndef _CHARACTER_H_
+#define _CHARACTER_H_
+#include "pch.h"
 using namespace std;
 
 class Character
@@ -21,6 +21,7 @@ public:
     void IncreaseGold(int TempGold);
     void TakeDamage(int damage);
     void CharacterLevelUp();
+    void AddItemToInventory(ItemList TempItem);
 
  //테스트를 위한 
     int _mapLevel;
@@ -34,4 +35,7 @@ public:
     int _CharacterLevel;
     int _CharacterGold;
     int _CharacterAttack;
+    vector<ItemList> _CurrentInventory;
 };
+
+#endif
