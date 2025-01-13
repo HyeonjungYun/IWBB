@@ -13,9 +13,9 @@ Character::Character()
 	_CurrentInventory[ItemList::BB_BOX] = 0;
 }
 
-Character::Character(string Charactername)
+Character::Character(string CharacterName)
 {
-	_CharacterName = "BBman";
+	_CharacterName = CharacterName;
 	_CharacterHP = 200;
 	_CharacterEXP = 0;
 	_CharacterLevel = 1;
@@ -100,6 +100,12 @@ void Character::PrintCharacter() const
 void Character::AddItemToInventory(ItemList::Item TempItem)
 {
 	_CurrentInventory[TempItem]++;
+}
+
+void Character::PrintInventory()
+{
+	cout << "HP포션 수량 : " << _CurrentInventory[ItemList::POTION] << endl;
+	cout << "용기의 상자 수량 : " << _CurrentInventory[ItemList::BB_BOX] << endl;
 }
 
 Character::~Character()
