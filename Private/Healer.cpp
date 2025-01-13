@@ -8,12 +8,12 @@ void Healer::PrintNothingHappened()
 
 void Healer::SetIgnoreDamage(int damage)
 {
-	ignoreDamage = damage;
+	IgnoreDamage = damage;
 }
 
 float Healer::GetIgnoreRate() const
 {
-	return ignoreRate;
+	return IgnoreRate;
 }
 
 bool Healer::CanIgnore() //주석

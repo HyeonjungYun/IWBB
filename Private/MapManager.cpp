@@ -1,7 +1,7 @@
 
 #include "MapManager.h"
 
-MapManager::MapManager(int mapLevel)	// ¸Ê »ı¼ºÀÚ, ¸ÊÀ» ±âº»ÀûÀÎ ¸ÊÀ» »ı¼º, ½ÃÀÛ ÁÂÇ¥¿Í ³¡ ÁÂÇ¥¸¦ »ı¼º ÈÄ ÇÒ´ç
+MapManager::MapManager(int mapLevel)	// ë§µ ìƒì„±ì, ë§µì„ ê¸°ë³¸ì ì¸ ë§µì„ ìƒì„±, ì‹œì‘ ì¢Œí‘œì™€ ë ì¢Œí‘œë¥¼ ìƒì„± í›„ í• ë‹¹
 {
 	_MapLevel = mapLevel;
 
@@ -20,7 +20,7 @@ MapManager::MapManager(int mapLevel)	// ¸Ê »ı¼ºÀÚ, ¸ÊÀ» ±âº»ÀûÀÎ ¸ÊÀ» »ı¼º, ½ÃÀÛ
 	_ClearedMap = tempClearedMap;
 }
 
-void MapManager::MapPrint() const	// ÇöÀç ¸ÊÀ» ÇÁ¸°Æ®
+void MapManager::MapPrint() const	// í˜„ì¬ ë§µì„ í”„ë¦°íŠ¸
 {
 	cout << "-";
 
@@ -41,7 +41,7 @@ void MapManager::MapPrint() const	// ÇöÀç ¸ÊÀ» ÇÁ¸°Æ®
 	}
 }
 
-void MapManager::SetCharacterPosition(int x, int y)	// ÇöÀç Ä³¸¯ÅÍ°¡ À§Ä¡ÇÑ °÷À» ¼öÁ¤ 
+void MapManager::SetCharacterPosition(int x, int y)	// í˜„ì¬ ìºë¦­í„°ê°€ ìœ„ì¹˜í•œ ê³³ì„ ìˆ˜ì • 
 {
 	_CharacterPos.x = x;
 	_CharacterPos.y = y;
@@ -58,12 +58,12 @@ Pos MapManager::GetCharacterPosition() const
 void MapManager::RenewDungeonStatus()
 {
 	_Map = _ClearedMap;
-
+  
 	_Map[_EndPos.y][_EndPos.x] = 'E';
 	_Map[_CharacterPos.y][_CharacterPos.x] = '!';
 }
 
-const Pos MapManager::RandomPos() const	// ·£´ıÇÑ ÁÂÇ¥¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö
+const Pos MapManager::RandomPos() const	// ëœë¤í•œ ì¢Œí‘œë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
 {
 	Pos temp;
 
@@ -77,7 +77,7 @@ const Pos MapManager::RandomPos() const	// ·£´ıÇÑ ÁÂÇ¥¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö
 	return temp;
 }
 
-bool MapManager::IsDungeonClear() const	// ÇöÀç Ä³¸¯ÅÍ À§Ä¡¿Í ³¡ ÁöÁ¡ÀÇ À§Ä¡°¡ µ¿ÀÏÇÑÁö È®ÀÎ
+bool MapManager::IsDungeonClear() const	// í˜„ì¬ ìºë¦­í„° ìœ„ì¹˜ì™€ ë ì§€ì ì˜ ìœ„ì¹˜ê°€ ë™ì¼í•œì§€ í™•ì¸
 {
 	if (_CharacterPos.x == _EndPos.x && _CharacterPos.y == _EndPos.y) return true;
 	return false;
@@ -86,9 +86,10 @@ bool MapManager::IsDungeonClear() const	// ÇöÀç Ä³¸¯ÅÍ À§Ä¡¿Í ³¡ ÁöÁ¡ÀÇ À§Ä¡°¡ µ
 void MapManager::RoomClear()
 {
 	_ClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
+
 }
 
-MapManager::~MapManager()	// ¼Ò¸êÀÚ
+MapManager::~MapManager()	// ì†Œë©¸ì
 {
 	delete this;
 }

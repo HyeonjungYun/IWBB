@@ -2,7 +2,6 @@
 #define _ITEM_H_
 
 #include <string>
-#include "ItemList.h"
 
 using namespace std;
 

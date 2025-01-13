@@ -33,4 +33,6 @@ namespace ItemList
 	};
 }
 
+enum FightResult { PLAYERWIN, PLAYERLOSE, VISITED, FIGHTEND };
+
 #endif

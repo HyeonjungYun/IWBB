@@ -5,11 +5,11 @@ class Healer : public Monster
 {
 public:
     Healer(string Monstername, int MonsterMaxHP, int MonsterHP, int MonsterEXP, int MonsterGold, int MonsterAttack) // 생성자 호출 순서: 부모 생성자 호출 -> 부모 생성자에서 멤버변수 초기화 -> 부모 생성자 호출 종료 -> 자식 생성자 호출  -> 자식 생성자 호출 종료
-        :Monster(Monstername, MonsterMaxHP, MonsterHP, MonsterEXP, MonsterGold, MonsterAttack), ignoreDamage(0), ignoreRate(0.5f)
+        :Monster(Monstername, MonsterMaxHP, MonsterHP, MonsterEXP, MonsterGold, MonsterAttack), IgnoreDamage(0), IgnoreRate(0.5f)
     {
         //기타 초기 필요 초기화 
     }
-    ~Healer() {}
+    ~Healer() { delete this; }
 
 public:
     void PrintNothingHappened(); // 고유 스킬 : 무시 사용 -> 로그매니저를 이용해 출력할 문자열 출력 함수
@@ -26,6 +26,6 @@ private:
     void IncreaseHP(); // 힐러 기본 스킬 : 힐, 체력을 회복함. 회복량은 1로 고정
 
 private:
-    float ignoreRate; // 공격 무시 스킬 실행 확률
-    int ignoreDamage; // 무시한 데미지 값
+    float IgnoreRate; // 공격 무시 스킬 실행 확률
+    int IgnoreDamage; // 무시한 데미지 값
 };
