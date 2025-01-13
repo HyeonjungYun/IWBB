@@ -1,13 +1,15 @@
 ﻿#ifndef _CHARACTER_H_
 #define _CHARACTER_H_
+
 #include "pch.h"
 using namespace std;
 
+// 캐릭터의 정보를 저장하는 클래스
 class Character
 {
 public:
-    Character(string Charactername, int CharacterHP, int CharacterEXP, int CharacterLevel, int CharacterGold, int CharacterAttack)
-    :_Charactername(Charactername), _CharacterHP(CharacterHP), _CharacterEXP(CharacterEXP),_CharacterLevel(CharacterLevel), _CharacterGold(CharacterGold), _CharacterAttack(CharacterAttack), _mapLevel(1) {}
+    Character();
+    Character(string Charactername);
     ~Character();
 
     string GetName();
@@ -21,21 +23,22 @@ public:
     void IncreaseGold(int TempGold);
     void TakeDamage(int damage);
     void CharacterLevelUp();
-    void AddItemToInventory(ItemList TempItem);
+    void AddItemToInventory(ItemList::Item TempItem);
+    void PrintCharacter() const;
+    void PrintInventory();
 
  //테스트를 위한 
     int _mapLevel;
     void CharacterSkill() { cout << "캐릭터 스킬 사용, 아무것도 없음" << endl; }
-    void PrintCharacter() const;
 
 public:
-    string _Charactername;
+    string _CharacterName;
     int _CharacterHP;
     int _CharacterEXP;
     int _CharacterLevel;
     int _CharacterGold;
     int _CharacterAttack;
-    vector<ItemList> _CurrentInventory;
+    unordered_map<ItemList::Item, int> _CurrentInventory;
 };
 
 #endif

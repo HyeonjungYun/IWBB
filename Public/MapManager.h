@@ -3,6 +3,7 @@
 
 #include "pch.h"
 
+// 맵을 생성하고 캐릭터의 현재 위치를 추적/관리하는 클래스
 class MapManager
 {
 private:
