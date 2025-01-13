@@ -29,6 +29,7 @@ void GameManager::GamePlaying()
 		cout << "4. 게임을 종료한다." << endl;
 		cout << "입력 : ";
 		getline(cin, choice);
+		system("cls");
 
 		if (choice == "1")
 		{
