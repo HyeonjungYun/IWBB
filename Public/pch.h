@@ -8,6 +8,8 @@
 #include <random>
 #include <cstdlib>
 
+#define ITEM_SIZE 1
+
 using namespace std;
 
 typedef struct
@@ -15,5 +17,10 @@ typedef struct
 	int x;
 	int y;
 }Pos;
+
+enum class ItemList
+{
+	POTION
+};
 
 #endif
