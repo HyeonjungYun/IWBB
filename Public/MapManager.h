@@ -21,6 +21,7 @@ public:
 	const Pos RandomPos() const;
 	bool IsDungeonClear() const;
 	void RoomClear();
+	int GetMapLevel() const;
 	~MapManager();
 };
 

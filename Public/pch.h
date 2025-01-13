@@ -23,7 +23,6 @@ enum ItemList
 	POTION = 1
 };
 
-enum FightResult { PLAYERWIN, PLAYERLOSE, FIGHTEND };
-
+enum FightResult { PLAYERWIN, PLAYERLOSE, VISITED, FIGHTEND };
 
 #endif

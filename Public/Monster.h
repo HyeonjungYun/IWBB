@@ -16,6 +16,7 @@ public:
 public: // 부모 클래스에서 정의 해서 자식 객체에서 사용하는 함수들
     string GetName() { return _Monstername; }
      int GetHp() { return _MonsterHP; }
+     int GetGold() { return _MonsterGold; }
      int GetAttack() { return _MonsterAttack; }
     
 public:

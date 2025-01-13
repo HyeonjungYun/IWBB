@@ -58,8 +58,8 @@ void MapManager::RenewDungeonStatus()
 {
 	_Map = _ClearedMap;
 	
-	_Map[_EndPos.x][_EndPos.y] = 'E';
-	_Map[_CharacterPos.x][_CharacterPos.y] = '!';
+	_Map[_EndPos.y][_EndPos.x] = 'E';
+	_Map[_CharacterPos.y][_CharacterPos.x] = '!';
 }
 
 const Pos MapManager::RandomPos() const	// 랜덤한 좌표를 생성하는 함수
@@ -84,7 +84,12 @@ bool MapManager::IsDungeonClear() const	// 현재 캐릭터 위치와 끝 지점의 위치가 �
 
 void MapManager::RoomClear()
 {
-	_ClearedMap[_CharacterPos.x][_CharacterPos.y] = 'C';
+	_ClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
+}
+
+int MapManager::GetMapLevel() const
+{
+	return _MapLevel;
 }
 
 MapManager::~MapManager()	// 소멸자
