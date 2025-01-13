@@ -9,6 +9,9 @@ class StoreManager
 public:
 	StoreManager(Character *Character);
 	void VisitStore();
+	void BuyHPPotion();
+	void BuyLevelUpCoupon();
+	void BuyBB_Box();
 	~StoreManager();
 
 private:
