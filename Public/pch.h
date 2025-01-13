@@ -7,6 +7,7 @@
 #include <ctime>
 #include <random>
 #include <cstdlib>
+#include <unordered_map>
 
 #define ITEM_SIZE 1
 
