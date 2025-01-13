@@ -1,13 +1,15 @@
 ﻿#ifndef _CHARACTER_H_
 #define _CHARACTER_H_
+
 #include "pch.h"
 using namespace std;
 
 class Character
 {
 public:
-    Character(string Charactername, int CharacterHP, int CharacterEXP, int CharacterLevel, int CharacterGold, int CharacterAttack)
-    :_Charactername(Charactername), _CharacterHP(CharacterHP), _CharacterEXP(CharacterEXP),_CharacterLevel(CharacterLevel), _CharacterGold(CharacterGold), _CharacterAttack(CharacterAttack), _mapLevel(1) {}
+    Character() : _Charactername("BBman"), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) {}
+    Character(string Charactername)
+        :_Charactername(Charactername), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) {}
     ~Character();
 
     string GetName();
@@ -21,7 +23,7 @@ public:
     void IncreaseGold(int TempGold);
     void TakeDamage(int damage);
     void CharacterLevelUp();
-    void AddItemToInventory(ItemList TempItem);
+    void AddItemToInventory(ItemList::Item TempItem);
 
  //테스트를 위한 
     int _mapLevel;
@@ -35,7 +37,7 @@ public:
     int _CharacterLevel;
     int _CharacterGold;
     int _CharacterAttack;
-    vector<ItemList> _CurrentInventory;
+    unordered_map<ItemList::Item, int> _CurrentInventory;
 };
 
 #endif

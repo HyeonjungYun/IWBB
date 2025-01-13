@@ -1,5 +1,18 @@
 ﻿#include "Character.h"
 
+Character::Character() : _Charactername("BBman"), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1)
+{
+	_CurrentInventory[ItemList::POTION] = 0;
+	_CurrentInventory[ItemList::BB_BOX] = 0;
+}
+
+Character::Character(string Charactername)
+	:_Charactername(Charactername), _CharacterHP(200), _CharacterEXP(0), _CharacterLevel(1), _CharacterGold(0), _CharacterAttack(10), _mapLevel(1) 
+{
+	_CurrentInventory[ItemList::POTION] = 0;
+	_CurrentInventory[ItemList::BB_BOX] = 0;
+}
+
 string Character::GetName() 
 { 
 	return _Charactername; 
@@ -70,9 +83,9 @@ void Character::PrintCharacter() const
 	cout << " EXP : " << _CharacterEXP << endl;
 }
 
-void Character::AddItemToInventory(ItemList TempItem)
+void Character::AddItemToInventory(ItemList::Item TempItem)
 {
-	_CurrentInventory.push_back(TempItem);
+	_CurrentInventory[TempItem]++;
 }
 
 Character::~Character()
