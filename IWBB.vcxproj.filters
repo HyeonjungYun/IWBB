@@ -18,9 +18,6 @@
     <ClInclude Include="Public\Item.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Public\ItemList.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Public\Monster.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -30,12 +27,36 @@
     <ClInclude Include="Public\MapManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Public\Character.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\DungeonManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Healer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Tanker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Private\MapManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Character.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\DungeonManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Healer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Tanker.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,12 +6,12 @@
 class MapManager
 {
 private:
-	vector<vector<char>> _map;
-	vector<vector<char>> _clearedMap;
-	int _mapLevel;
-	Pos _characterPos;
-	Pos _endPos;
-	const int _width = 2;
+	vector<vector<char>> _Map;
+	vector<vector<char>> _ClearedMap;
+	int _MapLevel;
+	Pos _CharacterPos;
+	Pos _EndPos;
+	const int _Width = 2;
 public:
 	MapManager(int mapLevel);
 	void MapPrint() const;

@@ -36,8 +36,6 @@ void DungeonManager::EnterDungeon(Character* Player, MapManager* MM)
 
 		//종료시 처리
 		isDungeonEnd = true;
-		delete monster;
-		monster = nullptr;
 		//사용했던 던전 vertor 정리 
 	}
 

@@ -135,15 +135,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Public\Character.h" />
+    <ClInclude Include="Public\DungeonManager.h" />
+    <ClInclude Include="Public\Healer.h" />
     <ClInclude Include="Public\Item.h" />
-    <ClInclude Include="Public\ItemList.h" />
     <ClInclude Include="Public\MapManager.h" />
     <ClInclude Include="Public\Monster.h" />
     <ClInclude Include="Public\pch.h" />
+    <ClInclude Include="Public\Tanker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Private\Character.cpp" />
+    <ClCompile Include="Private\DungeonManager.cpp" />
+    <ClCompile Include="Private\Healer.cpp" />
     <ClCompile Include="Private\main.cpp" />
     <ClCompile Include="Private\MapManager.cpp" />
+    <ClCompile Include="Private\Tanker.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
