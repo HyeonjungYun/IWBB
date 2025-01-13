@@ -9,8 +9,9 @@ GameManager::GameManager()
 	cout << "BB 던전에 입장하신 것을 환영합니다." << endl;
 
 	_Character = new Character(name);
-	//_DungeonManager = new DungeonManager;
+	_DungeonManager = new DungeonManager;
 	_StoreManager = new StoreManager(_Character);
+	_MapManager = new MapManager(3);
 }
 
 void GameManager::GamePlaying()
@@ -33,7 +34,7 @@ void GameManager::GamePlaying()
 
 		if (choice == "1")
 		{
-			// 던전 입장
+			_DungeonManager->EnterDungeon(_Character, _MapManager);
 			continue;
 		}
 		if (choice == "2")
