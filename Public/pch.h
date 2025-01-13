@@ -18,7 +18,7 @@ typedef struct
 	int y;
 }Pos;
 
-enum class ItemList
+enum ItemList
 {
 	POTION
 };
