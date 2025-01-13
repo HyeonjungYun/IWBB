@@ -20,7 +20,7 @@ typedef struct
 
 enum ItemList
 {
-	POTION
+	POTION = 1
 };
 
 #endif
