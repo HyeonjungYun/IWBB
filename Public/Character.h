@@ -4,6 +4,7 @@
 #include "pch.h"
 using namespace std;
 
+// 캐릭터의 정보를 저장하는 클래스
 class Character
 {
 public:

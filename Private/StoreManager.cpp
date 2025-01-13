@@ -1,11 +1,11 @@
 #include "StoreManager.h"
 
-StoreManager::StoreManager(Character* Character)
+StoreManager::StoreManager(Character* Character)		// 생성자
 {
 	_Character = Character;
 }
 
-void StoreManager::VisitStore()
+void StoreManager::VisitStore()		// 물건 구매를 관리하는 함수
 {
 	while (1)
 	{
@@ -22,7 +22,7 @@ void StoreManager::VisitStore()
 		getline(cin, choice);
 		system("cls");
 
-		if (choice == "1")
+		if (choice == "1")	
 		{
 			BuyHPPotion();
 			continue;
@@ -48,7 +48,7 @@ void StoreManager::VisitStore()
 
 }
 
-void StoreManager::BuyHPPotion()
+void StoreManager::BuyHPPotion()		// 포션을 구매하고 소지 골드를 차감하는 함수
 {
 	if (_Character->_CharacterGold > POTION_GOLD)
 	{
@@ -61,7 +61,7 @@ void StoreManager::BuyHPPotion()
 	cout << "골드가 부족합니다." << endl;
 }
 
-void StoreManager::BuyLevelUpCoupon()
+void StoreManager::BuyLevelUpCoupon()		// 레벨업권을 구매하고 소지 골드를 차감하는 함수
 {
 	if (_Character->_CharacterGold > LEVEL_COUPON_GOLD)
 	{
@@ -74,7 +74,7 @@ void StoreManager::BuyLevelUpCoupon()
 	cout << "골드가 부족합니다." << endl;
 }
 
-void StoreManager::BuyBB_Box()
+void StoreManager::BuyBB_Box()		// 용기의 상자를 구매하고 소지 골드를 차감하는 함수
 {
 	if (_Character->_CharacterGold > BB_BOX_GOLD)
 	{
@@ -87,7 +87,7 @@ void StoreManager::BuyBB_Box()
 	cout << "골드가 부족합니다." << endl;
 }
 
-StoreManager::~StoreManager()
+StoreManager::~StoreManager()		// 소멸자
 {
 	delete this;
 }
