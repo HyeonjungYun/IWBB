@@ -22,7 +22,9 @@ namespace ItemList
 {
 	enum Item
 	{
-		POTION = 1
+		POTION = 1,
+		LEVELUP_COUPON,
+		BB_BOX
 	};
 }
 
