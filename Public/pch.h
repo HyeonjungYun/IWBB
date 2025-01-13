@@ -18,9 +18,12 @@ typedef struct
 	int y;
 }Pos;
 
-enum ItemList
+namespace ItemList
 {
-	POTION = 1
-};
+	enum Item
+	{
+		POTION = 1
+	};
+}
 
 #endif
