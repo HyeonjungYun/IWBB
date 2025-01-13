@@ -23,6 +23,7 @@ public:
 	bool IsDungeonClear() const;
 	void RoomClear();
 	int GetMapLevel() const;
+	const bool IsClearRoom() const;
 	~MapManager();
 };
 
