@@ -25,11 +25,21 @@ void Character::SetAttack(int Attack)
 	_CharacterAttack = Attack;
 }
 
+int Character::GetEXP() const
+{
+	return _CharacterEXP;
+}
+
 void Character::IncreaseEXP(int TempEXP)
 {
 	_CharacterEXP += TempEXP;
 
 	if (_CharacterEXP > 1000) _CharacterEXP = 1000;
+}
+
+int Character::GetGold() const
+{
+	return _CharacterGold;
 }
 
 void Character::IncreaseGold(int TempGold)

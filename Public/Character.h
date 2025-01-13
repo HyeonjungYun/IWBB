@@ -15,7 +15,10 @@ public:
     void SetHP(int HP);
     int GetAttack() const;
     void SetAttack(int Attack);
+    int GetEXP() const;
     void IncreaseEXP(int TempEXP);
+    int GetGold() const;
+    void IncreaseGold(int TempGold);
     void TakeDamage(int damage);
     void CharacterLevelUp();
 
