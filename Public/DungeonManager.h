@@ -9,10 +9,8 @@ class DungeonManager
 public:
 	DungeonManager(Character* Player, MapManager* MapManager):Player(Player), MM(MapManager),IsDungeonEnd(false), Monster(nullptr), eFightResult(FIGHTEND), IsBossMonster(false){}
 	~DungeonManager(){ delete this; }
-
-public:
-	void EnterDungeon(Character* Player, MapManager* MM); // 전체 던전 클리어하면 종료
-	bool IsDungeonClear();
+	bool EnterDungeon(); // 전체 던전 클리어하면 종료
+	bool IsExitDungeon();
 	bool CanMove(MapManager* MM);
 	void Move(MapManager* MM);
 	int GetMonsterGold();

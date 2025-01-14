@@ -21,9 +21,6 @@ void DungeonManager::EnterDungeon(Character* Player, MapManager* MM)
 		if (eFightResult == PLAYERWIN)
 		{
 			cout << "전투에서 승리했습니다." << endl;
-			
-			//플레이어 골드, 경험치 획득
-			//펫 효과 발동하는 곳
 			MM->RoomClear();
 			if (IsBossMonster)
 			{
@@ -124,9 +121,29 @@ int DungeonManager::GetMonsterGold()
 }
 
 
-void DungeonManager::Fight(Character* Player, MapManager* MM)
-{
-	if (MM->IsDungeonClear()) //보스 스테이지야?
+	//	cout << monster->GetName() << "(이)가 " << monster->GetAttack() << "만큼 " << Player->GetName() << "(을)를 공격했다!" << endl;
+	//	Player->TakeDamage(monster->GetAttack());
+	//	cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << monster->GetName() << " 체력 : " << monster->GetHp() << endl;
+
+	//	if (Player->GetHp() <= 0)
+	//	{
+	//		eFightResult = PLAYERLOSE;
+	//		break;
+	//	}
+	//	if (monster->GetHp() <= 0)
+	//	{
+	//		eFightResult = PLAYERWIN;
+	//		break;
+	//	}
+
+	//}
+
+	Monster* monster = new Tanker(DungeonMapLevel);
+	cout << "-------------------------------------------" << endl;
+	monster->PrintMonster();
+	cout << "-------------------------------------------" << endl;
+
+	while (1)
 	{
 		//보스생성
 		Monster = new Tanker("보스", 100, 100, 0, 5, 10);
@@ -154,8 +171,14 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 			
 			if (Player->GetHp() <= 0)
 			{
-				eFightResult = PLAYERLOSE;
-				break;
+				cout << "몬스터가 쓰러졌습니다." << endl;
+				cout << "골드" << monster->GetGold() <<"G를 획득했습니다." << endl;
+				cout << "경험치" << monster->GetEXP() << "EXP를 획득했습니다." << endl;
+				//플레이어 골드, 경험치 획득
+				Player->IncreaseGold(monster->GetGold());
+				Player->IncreaseEXP(monster->GetEXP());
+				eFightResult = PLAYERWIN;
+				return;
 			}
 			if (Monster->GetHp() <= 0)
 			{
