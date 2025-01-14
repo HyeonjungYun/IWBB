@@ -8,10 +8,9 @@ GameManager::GameManager()
 
 	cout << "BB 던전에 입장하신 것을 환영합니다." << endl;
 
+	_MapLevel = 1;
 	_Character = new Character(name);
 	_StoreManager = new StoreManager(_Character);
-	_MapManager = new MapManager(3);
-	_DungeonManager = new DungeonManager(_Character, _MapManager);
 }
 
 void GameManager::GamePlaying()
@@ -34,7 +33,8 @@ void GameManager::GamePlaying()
 
 		if (choice == "1")
 		{
-			_DungeonManager->EnterDungeon(_Character, _MapManager);
+			DungeonManager* _DungeonManager = new DungeonManager(_Character, _MapLevel);
+			_DungeonManager->EnterDungeon();
 			continue;
 		}
 		if (choice == "2")
@@ -54,6 +54,16 @@ void GameManager::GamePlaying()
 		}
 		cout << "잘못 입력하셨습니다." << endl;
 	}
+}
+
+int GameManager::GetMapLevel() const
+{
+	return _MapLevel;
+}
+
+void GameManager::SetMapLevel()
+{
+	_MapLevel++;
 }
 
 GameManager::~GameManager()
