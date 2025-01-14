@@ -1,23 +1,23 @@
-#include "StoreManager.h"
+ï»¿#include "StoreManager.h"
 
-StoreManager::StoreManager(Character* Character)		// »ı¼ºÀÚ
+StoreManager::StoreManager(Character* Character)		// ìƒì„±ì
 {
 	_Character = Character;
 }
 
-void StoreManager::VisitStore()		// ¹°°Ç ±¸¸Å¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
+void StoreManager::VisitStore()		// ë¬¼ê±´ êµ¬ë§¤ë¥¼ ê´€ë¦¬í•˜ëŠ” í•¨ìˆ˜
 {
 	while (1)
 	{
-		cout << "»óÁ¡" << endl;
-		cout << "»óÇ° ±¸¸Å" << endl;
-		cout << "1. HPÆ÷¼Ç, 100Gold\n2.·¹º§¾÷±Ç, 1000Gold\n3.¿ë±âÀÇ ¹Ú½º, 500Gold\n4.»óÁ¡ ³ª°¡±â" << endl;
+		cout << "ìƒì " << endl;
+		cout << "ìƒí’ˆ êµ¬ë§¤" << endl;
+		cout << "1. HPí¬ì…˜, 100Gold\n2.ë ˆë²¨ì—…ê¶Œ, 1000Gold\n3.ìš©ê¸°ì˜ ë°•ìŠ¤, 500Gold\n4.ìƒì  ë‚˜ê°€ê¸°" << endl;
 		cout << "-------------------------------------------" << endl;
-		cout << "ÇöÀç ·¹º§¾÷±ÇÀ» ±¸¸ÅÇÏ½Ã¸é " << (_Character->_CharacterEXP / 100) << "·¹º§¾÷ °¡´ÉÇÕ´Ï´Ù." << endl;
-		cout << "HP°¡ " << (_Character->_CharacterEXP / 100) << " x 20¸¸Å­ Áõ°¡ÇÕ´Ï´Ù." << endl;
-		cout << "°ø°İ·ÂÀÌ " << (_Character->_CharacterEXP / 100) << " x 20¸¸Å­ Áõ°¡ÇÕ´Ï´Ù." << endl;
+		cout << "í˜„ì¬ ë ˆë²¨ì—…ê¶Œì„ êµ¬ë§¤í•˜ì‹œë©´ " << (_Character->_CharacterEXP / 100) << "ë ˆë²¨ì—… ê°€ëŠ¥í•©ë‹ˆë‹¤." << endl;
+		cout << "HPê°€ " << (_Character->_CharacterEXP / 100) << " x 20ë§Œí¼ ì¦ê°€í•©ë‹ˆë‹¤." << endl;
+		cout << "ê³µê²©ë ¥ì´ " << (_Character->_CharacterEXP / 100) << " x 20ë§Œí¼ ì¦ê°€í•©ë‹ˆë‹¤." << endl;
 		cout << "-------------------------------------------" << endl;
-		cout << "¿øÇÏ½Ã´Â ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä. :";
+		cout << "ì›í•˜ì‹œëŠ” ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”. :";
 		string choice;
 		getline(cin, choice);
 		system("cls");
@@ -42,52 +42,52 @@ void StoreManager::VisitStore()		// ¹°°Ç ±¸¸Å¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
 			break;
 		}
 
-		cout << "Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù." << endl;
+		cout << "ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤." << endl;
 	}
 
 
 }
 
-void StoreManager::BuyHPPotion()		// Æ÷¼ÇÀ» ±¸¸ÅÇÏ°í ¼ÒÁö °ñµå¸¦ Â÷°¨ÇÏ´Â ÇÔ¼ö
+void StoreManager::BuyHPPotion()		// í¬ì…˜ì„ êµ¬ë§¤í•˜ê³  ì†Œì§€ ê³¨ë“œë¥¼ ì°¨ê°í•˜ëŠ” í•¨ìˆ˜
 {
 	if (_Character->_CharacterGold > POTION_GOLD)
 	{
 		_Character->_CharacterGold -= POTION_GOLD;
 		_Character->AddItemToInventory(ItemList::POTION);
-		cout << "HPÆ÷¼ÇÀ» ±¸¸ÅÇÏ¿´½À´Ï´Ù." << endl;
+		cout << "HPí¬ì…˜ì„ êµ¬ë§¤í•˜ì˜€ìŠµë‹ˆë‹¤." << endl;
 		return;
 	}
 
-	cout << "°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù." << endl;
+	cout << "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤." << endl;
 }
 
-void StoreManager::BuyLevelUpCoupon()		// ·¹º§¾÷±ÇÀ» ±¸¸ÅÇÏ°í ¼ÒÁö °ñµå¸¦ Â÷°¨ÇÏ´Â ÇÔ¼ö
+void StoreManager::BuyLevelUpCoupon()		// ë ˆë²¨ì—…ê¶Œì„ êµ¬ë§¤í•˜ê³  ì†Œì§€ ê³¨ë“œë¥¼ ì°¨ê°í•˜ëŠ” í•¨ìˆ˜
 {
 	if (_Character->_CharacterGold > LEVEL_COUPON_GOLD)
 	{
 		_Character->_CharacterGold -= LEVEL_COUPON_GOLD;
 		_Character->CharacterLevelUp();
-		cout << "·¹º§¾÷ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
+		cout << "ë ˆë²¨ì—…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 		return;
 	}
 
-	cout << "°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù." << endl;
+	cout << "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤." << endl;
 }
 
-void StoreManager::BuyBB_Box()		// ¿ë±âÀÇ »óÀÚ¸¦ ±¸¸ÅÇÏ°í ¼ÒÁö °ñµå¸¦ Â÷°¨ÇÏ´Â ÇÔ¼ö
+void StoreManager::BuyBB_Box()		// ìš©ê¸°ì˜ ìƒìë¥¼ êµ¬ë§¤í•˜ê³  ì†Œì§€ ê³¨ë“œë¥¼ ì°¨ê°í•˜ëŠ” í•¨ìˆ˜
 {
 	if (_Character->_CharacterGold > BB_BOX_GOLD)
 	{
 		_Character->_CharacterGold -= BB_BOX_GOLD;
 		_Character->AddItemToInventory(ItemList::POTION);
-		cout << "·£´ı¹Ú½º¸¦ ±¸¸ÅÇÏ¿´½À´Ï´Ù." << endl;
+		cout << "ëœë¤ë°•ìŠ¤ë¥¼ êµ¬ë§¤í•˜ì˜€ìŠµë‹ˆë‹¤." << endl;
 		return;
 	}
 
-	cout << "°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù." << endl;
+	cout << "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤." << endl;
 }
 
-StoreManager::~StoreManager()		// ¼Ò¸êÀÚ
+StoreManager::~StoreManager()		// ì†Œë©¸ì
 {
 	delete this;
 }

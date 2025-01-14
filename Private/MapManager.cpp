@@ -68,12 +68,10 @@ const Pos MapManager::RandomPos() const	// 랜덤한 좌표를 생성하는 함�
 {
 	Pos temp;
 
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<> dist(0, _MapLevel + _Width - 1);
+	CreateRandomValue(0, _MapLevel + _Width - 1);
 
-	temp.x = dist(gen);
-	temp.y = dist(gen);
+	temp.x = CreateRandomValue(0, _MapLevel + _Width - 1);
+	temp.y = CreateRandomValue(0, _MapLevel + _Width - 1);
 
 	return temp;
 }

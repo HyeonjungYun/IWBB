@@ -18,6 +18,7 @@ public:
 	void Move(MapManager* MM);
 	void Fight(MapManager* MM); 
 	bool CanRun();
+	Monster* CreateRandomMonster();
 
 private:
 	Character* Player;

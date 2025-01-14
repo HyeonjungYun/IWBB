@@ -1,29 +1,14 @@
 ﻿#include "Character.h"
 
-Character::Character()		// 생성자
-{
-	_CharacterName = "BBman";
-	_CharacterHP = 200;
-	_CharacterMaxHP = 200;
-	_CharacterEXP = 0;
-	_CharacterLevel = 1;
-	_CharacterGold = 0;
-	_CharacterAttack = 10;
-	_mapLevel = 1;
-	_CurrentInventory[ItemList::POTION] = 0;
-	_CurrentInventory[ItemList::BB_BOX] = 0;
-	_PetTheif = 0;
-}
-
 Character::Character(string CharacterName)		// 생성자
 {
 	_CharacterName = CharacterName;
-	_CharacterHP = 200;
-	_CharacterMaxHP = 200;
+	_CharacterMaxHP = 400;
+	_CharacterHP = _CharacterMaxHP;
 	_CharacterEXP = 0;
 	_CharacterLevel = 1;
 	_CharacterGold = 0;
-	_CharacterAttack = 10;
+	_CharacterAttack = 35;
 	_mapLevel = 1;
 	_CurrentInventory[ItemList::POTION] = 0;
 	_CurrentInventory[ItemList::BB_BOX] = 0;

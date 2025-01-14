@@ -1,4 +1,4 @@
-#ifndef _PCH_H_
+﻿#ifndef _PCH_H_
 #define _PCH_H_
 
 #include <iostream>
@@ -32,6 +32,18 @@ namespace ItemList
 		BB_BOX
 	};
 }
+
+namespace MonsterList
+{
+	enum Monster
+	{
+		ATTACKER = 1,
+		HEALER,
+		TANKER
+	};
+}
+
+int CreateRandomValue(int first, int second);
 
 enum FightResult { PLAYERWIN, PLAYERLOSE, VISITED, PLAYERRUN, FIGHTEND };
 

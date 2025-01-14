@@ -8,7 +8,6 @@ using namespace std;
 class Character
 {
 public:
-    Character();
     Character(string Charactername);
     ~Character();
 

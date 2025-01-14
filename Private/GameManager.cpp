@@ -1,12 +1,12 @@
-#include "GameManager.h"
+ï»¿#include "GameManager.h"
 
 GameManager::GameManager()
 {
 	string name;
-	cout << "Ä³¸¯ÅÍ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä. : ";
+	cout << "ìºë¦­í„° ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”. : ";
 	getline(cin, name);
 
-	cout << "BB ´øÀü¿¡ ÀÔÀåÇÏ½Å °ÍÀ» È¯¿µÇÕ´Ï´Ù." << endl;
+	cout << "BB ë˜ì „ì— ìž…ìž¥í•˜ì‹  ê²ƒì„ í™˜ì˜í•©ë‹ˆë‹¤." << endl;
 
 	_MapLevel = 1;
 	_Character = new Character(name);
@@ -19,22 +19,25 @@ void GameManager::GamePlaying()
 	{
 		string choice;
 
-		cout << "¾Æ·¡·Î ³»·Á°¡´Â °è´ÜÀÌ º¸ÀÎ´Ù." << endl;
 		cout << "-------------------------------------------" << endl;
 		_Character->PrintCharacter();
 		cout << "-------------------------------------------" << endl;
-		cout << "1. °è´ÜÀ» ³»·Á°£´Ù." << endl;
-		cout << "2. »óÁ¡À» ÀÌ¿ëÇÑ´Ù." << endl;
-		cout << "3. ÀÎº¥Åä¸®¸¦ ¿­¾îº»´Ù." << endl;
-		cout << "4. °ÔÀÓÀ» Á¾·áÇÑ´Ù." << endl;
-		cout << "ÀÔ·Â : ";
+		cout << endl << "ì•„ëž˜ë¡œ ë‚´ë ¤ê°€ëŠ” ê³„ë‹¨ì´ ë³´ì¸ë‹¤." << endl;
+		cout << "1. ê³„ë‹¨ì„ ë‚´ë ¤ê°„ë‹¤." << endl;
+		cout << "2. ìƒì ì„ ì´ìš©í•œë‹¤." << endl;
+		cout << "3. ì¸ë²¤í† ë¦¬ë¥¼ ì—´ì–´ë³¸ë‹¤." << endl;
+		cout << "4. ê²Œìž„ì„ ì¢…ë£Œí•œë‹¤." << endl;
+		cout << "ìž…ë ¥ : ";
 		getline(cin, choice);
 		system("cls");
 
 		if (choice == "1")
 		{
 			DungeonManager* _DungeonManager = new DungeonManager(_Character, _MapLevel);
-			_DungeonManager->EnterDungeon();
+			if (!_DungeonManager->EnterDungeon())
+			{
+				_MapLevel++;
+			}
 			continue;
 		}
 		if (choice == "2")
@@ -52,7 +55,7 @@ void GameManager::GamePlaying()
 		{
 			break;
 		}
-		cout << "Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù." << endl;
+		cout << "ìž˜ëª» ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤." << endl;
 	}
 }
 

@@ -1,4 +1,4 @@
-#ifndef _GAME_MANAGER_H_
+ï»¿#ifndef _GAME_MANAGER_H_
 #define _GAME_MANAGER_H_
 
 #include "pch.h"
@@ -7,7 +7,7 @@
 #include "StoreManager.h"
 #include "MapManager.h"
 
-// °ÔÀÓ ÁøÇàÀ» ÃÑÃ¥ÇÏ´Â Å¬·¡½º
+// ê²Œì„ ì§„í–‰ì„ ì´ì±…í•˜ëŠ” í´ë˜ìŠ¤
 class GameManager
 {
 public:

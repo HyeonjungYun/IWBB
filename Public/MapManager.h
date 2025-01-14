@@ -1,9 +1,9 @@
-#ifndef _MAP_MANAGER_H_
+ï»¿#ifndef _MAP_MANAGER_H_
 #define _MAP_MANAGER_H_
 
 #include "pch.h"
 
-// ¸ÊÀ» »ı¼ºÇÏ°í Ä³¸¯ÅÍÀÇ ÇöÀç À§Ä¡¸¦ ÃßÀû/°ü¸®ÇÏ´Â Å¬·¡½º
+// ë§µì„ ìƒì„±í•˜ê³  ìºë¦­í„°ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ì¶”ì /ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 class MapManager
 {
 private:
