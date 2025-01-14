@@ -26,8 +26,6 @@ bool DungeonManager::EnterDungeon()
 		if (eFightResult == PLAYERWIN)
 		{
 			cout << "전투에서 승리했습니다." << endl;
-			
-			//플레이어 골드, 경험치 획득
 			MM->RoomClear();
 		}
 		if (eFightResult == PLAYERLOSE)
@@ -170,20 +168,55 @@ void DungeonManager::Fight(MapManager* MM)
 
 	//}
 
-	Monster* monster = new Tanker("그라가스", 10, 10, 20, 100, 10);
+	Monster* monster = new Tanker(DungeonMapLevel);
+	cout << "-------------------------------------------" << endl;
 	monster->PrintMonster();
+	cout << "-------------------------------------------" << endl;
 
 	while (1)
 	{
-		cout << "무엇을 하시겠습니까?" << endl;
-		cout << "1.공격 2. 아이템 3. 도망친다." << endl;
-		cout << "입력 : ";
-
-		string choice;
-		getline(cin, choice);
-		system("cls");
-
-		if (choice == "1")
+		//보스생성
+		Monster = new Tanker(DungeonMapLevel);
+		IsBossMonster = true;
+		IsDungeonEnd = true;
+	}
+	else
+	{
+		IsBossMonster = false;
+		Monster = new Tanker(DungeonMapLevel);
+	}
+	
+	int turn = 0; //0:플레이어턴, 1:싸움
+	while (true)
+	{
+		if(turn == 0)
+		{ 
+			cout << Player->GetName() << "(이)가 " << Player->GetAttack() << "만큼 " << Monster->GetName() << "(을)를 공격했다!" << endl;
+			Monster->TakeDamage(Player->GetAttack());
+			if (nullptr != dynamic_cast<Tanker*>(Monster))
+				Player->TakeDamage(dynamic_cast<Tanker*>(Monster)->GetReflectionDamage());
+			
+			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
+			
+			if (Player->GetHp() <= 0)
+			{
+				cout << "몬스터가 쓰러졌습니다." << endl;
+				cout << "골드" << monster->GetGold() <<"G를 획득했습니다." << endl;
+				cout << "경험치" << monster->GetEXP() << "EXP를 획득했습니다." << endl;
+				//플레이어 골드, 경험치 획득
+				Player->IncreaseGold(monster->GetGold());
+				Player->IncreaseEXP(monster->GetEXP());
+				eFightResult = PLAYERWIN;
+				return;
+			}
+			if (Monster->GetHp() <= 0)
+			{
+				eFightResult = PLAYERWIN;
+				break;
+			}
+			turn = 1;
+		}
+		else
 		{
 			monster->TakeDamage(Player->GetAttack());
 

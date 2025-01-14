@@ -12,8 +12,6 @@ public:
 	DungeonManager(Character* _Character, int MapLevel) 
 		: Player(_Character), MM(new MapManager(MapLevel)), IsDungeonEnd(false), DungeonMapLevel(MapLevel), eFightResult(FIGHTEND), IsBossMonster(false) {}
 	~DungeonManager(){ delete this; }
-
-public:
 	bool EnterDungeon(); // 전체 던전 클리어하면 종료
 	bool IsExitDungeon();
 	bool CanMove(MapManager* MM);

@@ -154,6 +154,7 @@
     <ClCompile Include="Private\MapManager.cpp" />
     <ClCompile Include="Private\StoreManager.cpp" />
     <ClCompile Include="Private\Tanker.cpp" />
+    <ClCompile Include="Public\Monster.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
