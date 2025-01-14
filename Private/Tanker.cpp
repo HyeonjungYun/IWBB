@@ -13,20 +13,21 @@ void Tanker::TakeDamage(int damage)
 	random_device rd; //랜덤 생성 클래스 선언
 	mt19937 gen(rd()); // 난수
 	uniform_int_distribution<> dist(0, 1);
-	//DecreaseDamage();
 	int randomValue = dist(gen); // 0,1;
 	if (randomValue == 1)
 	{
-		if (Canskill())
+		if (CanReflection(_Damage))
 		{
-			_MonsterHP -= _ReflectionDamage;
-			cout << "몬스터가 스킬을 사용했다" << endl;
+			cout << _Monstername << "가 스킬을 사용했다!!" << endl;
+			cout << _Monstername << "가 데미지 " << _Damage << "를 입고 " << _ReflectionDamage << "를 반사했다." <<endl;
+			_MonsterHP -= _Damage;
 		}
 	}
 	else
 	{
+		cout << _Monstername << "가 스킬 사용에 실패했다!!" << endl;
+		cout << _Monstername << "가 데미지 " << _Damage << "를 입었다 " << endl;
 		_MonsterHP -= _Damage;
-		cout << "몬스터가 스킬 사용에 실패했다" << endl;
 	}
 	if (_MonsterHP <= 0) { _MonsterHP = 0; return; }
 
@@ -44,7 +45,7 @@ void Tanker::Skill() //반환값이 없는 고유 스킬 호출하는 곳
 bool Tanker::Canskill() //반환값이 bool인 고유 스킬 호출한는 곳
 {
 
-	return CanReflection(_Damage); //탱커 고유 스킬 호출
+	return true; //탱커 고유 스킬 호출
 }
 
 /*
@@ -80,6 +81,7 @@ bool Tanker::CanReflection(int damage) //반사데미지
 	
 	if (_ReflectionDamage < 1) // 반사데미지가 0이라 아무 일도 일어나지 않은 경우
 	{
+		cout << "플레이어 공격이 너무 약해서 그냥 맞기로 했다." << endl;
 		return false;
 	}
 	else

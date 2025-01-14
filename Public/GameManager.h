@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "DungeonManager.h"
 #include "StoreManager.h"
+#include "MapManager.h"
 
 // 게임 진행을 총책하는 클래스
 class GameManager
@@ -15,8 +16,9 @@ public:
 	~GameManager();
 private:
 	Character* _Character;
-	//DungeonManager* _DungeonManager;
+	DungeonManager* _DungeonManager;
 	StoreManager* _StoreManager;
+	MapManager* _MapManager;
 };
 
 #endif
