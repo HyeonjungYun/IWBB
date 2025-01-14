@@ -11,6 +11,7 @@ Character::Character()		// 생성자
 	_mapLevel = 1;
 	_CurrentInventory[ItemList::POTION] = 0;
 	_CurrentInventory[ItemList::BB_BOX] = 0;
+	_PetTheif = false;
 }
 
 Character::Character(string CharacterName)		// 생성자
@@ -24,6 +25,7 @@ Character::Character(string CharacterName)		// 생성자
 	_mapLevel = 1;
 	_CurrentInventory[ItemList::POTION] = 0;
 	_CurrentInventory[ItemList::BB_BOX] = 0;
+	_PetTheif = false;
 }
 
 string Character::GetName() 
@@ -71,6 +73,12 @@ int Character::GetGold() const
 void Character::IncreaseGold(int TempGold)	// 골드 획득 시 골드 증가
 {
 	_CharacterGold += TempGold;
+
+	if (_PetTheif)
+	{
+		_CharacterGold += TempGold / 10;
+		cout << "애완 도둑이 추가 골드를 훔쳐왔습니다!" << endl;
+	}
 }
 
 void Character::TakeDamage(int damage)		// 대미지 입을 시 HP감소
