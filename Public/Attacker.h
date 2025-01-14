@@ -1,4 +1,4 @@
-#ifndef _ATTACKER_H_
+﻿#ifndef _ATTACKER_H_
 #define _ATTACKER_H_
 
 #include "Monster.h"

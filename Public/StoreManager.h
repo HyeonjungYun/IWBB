@@ -1,4 +1,4 @@
-#ifndef _STORE_MANAGER_H_
+﻿#ifndef _STORE_MANAGER_H_
 #define _STORE_MANAGER_H_
 
 #include "pch.h"

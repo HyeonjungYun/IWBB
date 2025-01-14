@@ -1,4 +1,4 @@
-#ifndef _PCH_H_
+ï»¿#ifndef _PCH_H_
 #define _PCH_H_
 
 #include <iostream>
@@ -43,14 +43,7 @@ namespace MonsterList
 	};
 }
 
-int CreateRandomValue(int first, int second)
-{
-	random_device rd; //·£´ý »ý¼º Å¬·¡½º ¼±¾ð
-	mt19937 gen(rd()); // ³­¼ö
-	uniform_int_distribution<> dist(first, second);
-
-	return dist(gen);
-}
+int CreateRandomValue(int first, int second);
 
 enum FightResult { PLAYERWIN, PLAYERLOSE, VISITED, PLAYERRUN, FIGHTEND };
 

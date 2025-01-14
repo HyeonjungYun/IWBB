@@ -1,4 +1,4 @@
-#include "Monster.h"
+﻿#include "Monster.h"
 
 Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
 {

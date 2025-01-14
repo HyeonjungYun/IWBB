@@ -147,7 +147,12 @@
     <ClInclude Include="Public\Tanker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Private\Attacker.cpp" />
+    <ClCompile Include="Private\Attacker.cpp">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
     <ClCompile Include="Private\Character.cpp" />
     <ClCompile Include="Private\DungeonManager.cpp" />
     <ClCompile Include="Private\GameManager.cpp" />
@@ -155,6 +160,7 @@
     <ClCompile Include="Private\main.cpp" />
     <ClCompile Include="Private\MapManager.cpp" />
     <ClCompile Include="Private\Monster.cpp" />
+    <ClCompile Include="Private\pch.cpp" />
     <ClCompile Include="Private\StoreManager.cpp" />
     <ClCompile Include="Private\Tanker.cpp" />
   </ItemGroup>

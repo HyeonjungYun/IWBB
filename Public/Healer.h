@@ -9,7 +9,6 @@ public:
     Healer(int MapLevel, MonsterList::Monster MonsterType);
     void TakeDamage(int damage) override;
     void MonsterAction() override;
-    bool CanIgnore(); // 힐러 고유 스킬 : 무시, 받는 공격을 무시함
     void IncreaseHP(); // 힐러 기본 스킬 : 힐, 체력을 회복함. 회복량은 1로 고정
 };
 

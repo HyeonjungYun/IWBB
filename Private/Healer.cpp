@@ -9,19 +9,6 @@ Healer::Healer(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLeve
 		_Monstername = "소나";
 }
 
-bool Healer::CanIgnore()
-{
-	int randomValue = rand() % 2;
-	if (randomValue == 1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 void Healer::TakeDamage(int damage)
 {
 	if (int randomValue = CreateRandomValue(1, 10) < 4)
@@ -46,7 +33,7 @@ void Healer::IncreaseHP() // 상위클래스에서 currentHP, maxHP 필요
 		return;
 	}
 
-	int increaseHPAmount = _MonsterHP / 10; // 고정된 회복량 1
+	int increaseHPAmount = _MonsterHP / 100;
 	_MonsterHP += increaseHPAmount; // 체력 증가
 
 	if (_MonsterHP > _MonsterMaxHP)
