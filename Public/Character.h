@@ -15,6 +15,8 @@ public:
     string GetName();
     int GetHp() const;
     void SetHP(int HP);
+    int GetMaxHP() const;
+    void SetMaxHP(int MaxHP);
     int GetAttack() const;
     void SetAttack(int Attack);
     int GetEXP() const;
@@ -26,6 +28,8 @@ public:
     void AddItemToInventory(ItemList::Item TempItem);
     void PrintCharacter() const;
     void PrintInventory();
+    void UseHPPotion();
+    void UseBB_Box();
 
  //테스트를 위한 
     int _mapLevel;
@@ -34,6 +38,7 @@ public:
 public:
     string _CharacterName;
     int _CharacterHP;
+    int _CharacterMaxHP;
     int _CharacterEXP;
     int _CharacterLevel;
     int _CharacterGold;
