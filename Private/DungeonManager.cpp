@@ -168,10 +168,6 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
 
 			if (Player->GetHp() <= 0)
-				eFightResult = PLAYERLOSE;
-			if (Monster->GetHp() <= 0)
-				eFightResult = PLAYERWIN;
-			if (Player->GetHp() <= 0)
 			{
 				eFightResult = PLAYERLOSE;
 				break;
