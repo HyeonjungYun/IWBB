@@ -9,9 +9,9 @@ GameManager::GameManager()
 	cout << "BB 던전에 입장하신 것을 환영합니다." << endl;
 
 	_Character = new Character(name);
-	_DungeonManager = new DungeonManager;
 	_StoreManager = new StoreManager(_Character);
 	_MapManager = new MapManager(3);
+	_DungeonManager = new DungeonManager(_Character, _MapManager);
 }
 
 void GameManager::GamePlaying()
