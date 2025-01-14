@@ -39,6 +39,7 @@ public:
     int _CharacterGold;
     int _CharacterAttack;
     unordered_map<ItemList::Item, int> _CurrentInventory;
+    bool _PetTheif;
 };
 
 #endif
