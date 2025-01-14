@@ -13,12 +13,13 @@ class GameManager
 public:
 	GameManager();
 	void GamePlaying();
+	int GetMapLevel() const;
+	void SetMapLevel();
 	~GameManager();
 private:
 	Character* _Character;
-	DungeonManager* _DungeonManager;
 	StoreManager* _StoreManager;
-	MapManager* _MapManager;
+	int _MapLevel;
 };
 
 #endif

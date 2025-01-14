@@ -28,8 +28,10 @@ public:
     void AddItemToInventory(ItemList::Item TempItem);
     void PrintCharacter() const;
     void PrintInventory();
+    void UseItem();
     void UseHPPotion();
     void UseBB_Box();
+    void PrizeGarbage() const;
 
  //테스트를 위한 
     int _mapLevel;
@@ -44,7 +46,7 @@ public:
     int _CharacterGold;
     int _CharacterAttack;
     unordered_map<ItemList::Item, int> _CurrentInventory;
-    bool _PetTheif;
+    int _PetTheif;
 };
 
 #endif

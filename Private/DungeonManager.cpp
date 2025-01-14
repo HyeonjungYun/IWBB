@@ -3,100 +3,113 @@
 #include "Character.h"
 #include "Tanker.h"
 #include "Healer.h"
+#include "Monster.h"
 
-void DungeonManager::EnterDungeon(Character* Player, MapManager* MM)
+bool DungeonManager::EnterDungeon()
 {
 	system("cls");
 
-	while (!IsDungeonEnd)
+	while (1)
 	{
 		MM->MapPrint();
 
+		if (MM->IsDungeonClear())
+			if (IsExitDungeon()) return false;
+				 
 		if (!MM->IsClearRoom()) //클리어 했던 곳이야?
-			Fight(Player, MM); //결과 저장하고 나옴
-		else //이미 클리어 했던 곳이면
-			eFightResult = VISITED;
+		{
+			Fight(MM); //결과 저장하고 나옴
+			Sleep(2100);
+		}
 		
 		//결과에 따라
 		if (eFightResult == PLAYERWIN)
 		{
 			cout << "전투에서 승리했습니다." << endl;
 			MM->RoomClear();
-			if (IsBossMonster)
-			{
-				if (IsDungeonClear())
-					break;
-			}
-			Move(MM);
 		}
-		else if (eFightResult == PLAYERLOSE)
+		if (eFightResult == PLAYERLOSE)
 		{
 			cout << "전투에서 패배했습니다." << endl;
 			cout << "로비로 돌아갑니다." << endl;
-			Player->PrintCharacter();
-			IsDungeonEnd = true;
+			return true;
 		}
-		else if (eFightResult == VISITED)
+		if (eFightResult == PLAYERRUN)
 		{
-			system("cls");
-			cout << "이미 클리어한 던전입니다" << endl;
-			Move(MM);
+			cout << "몬스터에게서 도망쳤습니다." << endl;
 		}
+		system("cls");
+		Move(MM);
 	}
 
 }
 
-bool DungeonManager::IsDungeonClear()
+bool DungeonManager::IsExitDungeon()
 {
-		cout << "던전 클리어. 나가시겠습니까 : 1.네 2.아니오" << endl;
-		int num = -1;
-		cin >> num;
-		cin.ignore();
-		if (num == 1)
-		{
-			IsDungeonEnd = true;
-			IsBossMonster = false;
-			system("cls");
-			return true;
-		}
-		return false;
+	cout << "탈출구가 보입니다. 나가시겠습니까 : 1.네 2.아니오" << endl;
+	
+	string choice;
+	getline(cin, choice);
+	system("cls");
+
+	if (choice == "1")
+	{
+		IsDungeonEnd = true;
+		IsBossMonster = false;
+
+		cout << "던전을 나가는 중입니다";
+		Sleep(1000);
+		cout << ". ";
+		Sleep(1000);
+		cout << ". ";
+		Sleep(1000);
+		cout << ". " << endl;
+		Sleep(1000);
+
+		system("cls");
+		return true;
+	}
+	return false;
 }
 
 bool DungeonManager::CanMove(MapManager* MM)
 {
+	MM->MapPrint();
 	//플레이어가 이동할 다음 스테이지 결정
 	cout << "이동할 방향을 선택하세요 : 1.위 2.아래 3.왼쪽 4.오른쪽" << endl;
-	int dir = -1;
-	cin >> dir;
-	cin.ignore();
-	Pos pos = MM->GetCharacterPosition();
+	string choice;
+	getline(cin, choice);
+	
+	system("cls");
 
-	if (dir == 1)
+	Pos CharacterPos = MM->GetCharacterPosition();
+
+	if (choice == "1")
 	{
-		if (MM->GetCharacterPosition().y <= 0) //위 이동불가
+		if (CharacterPos.y <= 0) //위 이동불가
 			return false;
-		MM->SetCharacterPosition(pos.x, pos.y - 1);
+		MM->SetCharacterPosition(CharacterPos.x, CharacterPos.y - 1);
 		return true;
 	}
-	if (dir == 2)
+	if (choice == "2")
 	{
-		if (MM->GetCharacterPosition().y >= MM->GetMapLevel() + 1) //아래 이동불가
+		if (CharacterPos.y >= DungeonMapLevel + 1) //아래 이동불가
 			return false;
-		MM->SetCharacterPosition(pos.x, pos.y + 1);
+		MM->SetCharacterPosition(CharacterPos.x, CharacterPos.y + 1);
 		return true;
 	}
-	if (dir == 3)
+	if (choice == "3")
 	{
-		if (MM->GetCharacterPosition().x <= 0) //왼쪽 이동불가
+		if (CharacterPos.x <= 0) //왼쪽 이동불가
 			return false;
-		MM->SetCharacterPosition(pos.x - 1, pos.y);
+		MM->SetCharacterPosition(CharacterPos.x - 1, CharacterPos.y);
 		return true;
 	}
-	if (dir == 4)
+	if (choice == "4")
 	{
-		if (MM->GetCharacterPosition().x >= MM->GetMapLevel() + 1) //오른쪽 이동불가
+		if (CharacterPos.x >= DungeonMapLevel + 1) //오른쪽 이동불가
 			return false;
-		MM->SetCharacterPosition(pos.x + 1, pos.y);
+		MM->SetCharacterPosition(CharacterPos.x + 1, CharacterPos.y);
 		return true;
 	}
 
@@ -105,7 +118,6 @@ bool DungeonManager::CanMove(MapManager* MM)
 
 void DungeonManager::Move(MapManager* MM)
 {
-	MM->MapPrint();
 	while (!CanMove(MM)) //이동하면 트루
 	{
 		cout << "이동할 수 없습니다." << endl;
@@ -114,12 +126,30 @@ void DungeonManager::Move(MapManager* MM)
 	MM->RenewDungeonStatus();
 }
 
-
-int DungeonManager::GetMonsterGold()
+void DungeonManager::Fight(MapManager* MM)
 {
-	return Monster->GetGold();
-}
 
+	//Monster* monster = new Tanker("그라가스", 10, 10, 20, 100, 10);
+	////싸움
+	//while (true)
+	//{
+	//	cout << Player->GetName() << "(이)가 " << Player->GetAttack() << "만큼 " << monster->GetName() << "(을)를 공격했다!" << endl;
+	//	monster->TakeDamage(Player->GetAttack());
+	//	if (nullptr != dynamic_cast<Tanker*>(monster))
+	//		Player->TakeDamage(dynamic_cast<Tanker*>(monster)->GetReflectionDamage());
+	//		
+	//	cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << monster->GetName() << " 체력 : " << monster->GetHp() << endl;
+	//		
+	//	if (Player->GetHp() <= 0)
+	//	{
+	//		eFightResult = PLAYERLOSE;
+	//		break;
+	//	}
+	//	if (monster->GetHp() <= 0)
+	//	{
+	//		eFightResult = PLAYERWIN;
+	//		break;
+	//	}
 
 	//	cout << monster->GetName() << "(이)가 " << monster->GetAttack() << "만큼 " << Player->GetName() << "(을)를 공격했다!" << endl;
 	//	Player->TakeDamage(monster->GetAttack());
@@ -146,18 +176,17 @@ int DungeonManager::GetMonsterGold()
 	while (1)
 	{
 		//보스생성
-		Monster = new Tanker("보스", 100, 100, 0, 5, 10);
+		Monster = new Tanker(DungeonMapLevel);
 		IsBossMonster = true;
 		IsDungeonEnd = true;
 	}
 	else
 	{
 		IsBossMonster = false;
-		Monster = new Tanker("탱커", 100, 100, 0, 5, 10);
+		Monster = new Tanker(DungeonMapLevel);
 	}
 	
-	int turn = 0; //0:플레이어턴, 1:
-	//싸움
+	int turn = 0; //0:플레이어턴, 1:싸움
 	while (true)
 	{
 		if(turn == 0)
@@ -189,22 +218,52 @@ int DungeonManager::GetMonsterGold()
 		}
 		else
 		{
-			cout << Monster->GetName() << "(이)가 " << Monster->GetAttack() << "만큼 " << Player->GetName() << "(을)를 공격했다!" << endl;
-			Player->TakeDamage(Monster->GetAttack());
-			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
+			monster->TakeDamage(Player->GetAttack());
 
-			if (Player->GetHp() <= 0)
+			cout << Player->GetName() << "가 " << monster->GetName() << "에게 " << Player->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+			cout << monster->GetName() << "의 HP : " << monster->GetHp() << endl;
+
+			if (monster->GetHp() <= 0)
 			{
-				eFightResult = PLAYERLOSE;
-				break;
-			}
-			if (Monster->GetHp() <= 0)
-			{
+				cout << "몬스터가 쓰러졌습니다." << endl;
 				eFightResult = PLAYERWIN;
-				break;
+				return;
 			}
-			turn = 0;
-		}
 
+		}
+		if (choice == "2")
+		{
+			Player->PrintInventory();
+			Player->UseItem();
+		}
+		if (choice == "3")
+		{
+			if (CanRun())
+				return;
+			cout << "도망치지 못 했습니다." << endl;
+		}
+		
+		Player->SetHP(Player->GetHp() - monster->GetAttack());
+		cout << monster->GetName() << "가 " << Player->GetName() << "에게 " << Player->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+		cout << monster->GetName() << "의 HP : " << monster->GetHp() << endl;
+
+		if (Player->GetHp() <= 0)
+		{
+			eFightResult = PLAYERLOSE;
+			return;
+		}
 	}
+}
+
+bool DungeonManager::CanRun()
+{
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dist(1, 10);
+
+	int rate = dist(gen);
+	
+	if (rate < 4)
+		return true;
+	return false;
 }

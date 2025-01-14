@@ -13,8 +13,8 @@ MapManager::MapManager(int mapLevel)	// 맵 생성자, 맵을 기본적인 맵�
 
 	tempMap[_EndPos.y][_EndPos.x] = 'E';
 	tempMap[_CharacterPos.y][_CharacterPos.x] = '!';
-	//tempClearedMap[_EndPos.y][_EndPos.x] = 'C';
-	//tempClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
+	tempClearedMap[_EndPos.y][_EndPos.x] = 'C';
+	tempClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
 
 	_Map = tempMap;
 	_ClearedMap = tempClearedMap;
@@ -22,6 +22,7 @@ MapManager::MapManager(int mapLevel)	// 맵 생성자, 맵을 기본적인 맵�
 
 void MapManager::MapPrint() const	// 현재 맵을 프린트
 {
+	cout << endl << "! : 현재 나의 위치 E : 탈출구 C : 몬스터가 나타나지 않음" << endl;
 	cout << "-";
 
 	for (vector<char> row : _Map)
@@ -87,11 +88,6 @@ void MapManager::RoomClear()
 {
 	_ClearedMap[_CharacterPos.y][_CharacterPos.x] = 'C';
 
-}
-
-int MapManager::GetMapLevel() const
-{
-	return _MapLevel;
 }
 
 const bool MapManager::IsClearRoom() const		// 현재 있는 방이 클리어된 방인지, 몬스터가 나와야 하는 방인지 확인

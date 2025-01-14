@@ -9,9 +9,9 @@ class MapManager
 private:
 	vector<vector<char>> _Map;
 	vector<vector<char>> _ClearedMap;
-	int _MapLevel;
 	Pos _CharacterPos;
 	Pos _EndPos;
+	int _MapLevel;
 	const int _Width = 2;
 public:
 	MapManager(int mapLevel);
@@ -22,7 +22,6 @@ public:
 	const Pos RandomPos() const;
 	bool IsDungeonClear() const;
 	void RoomClear();
-	int GetMapLevel() const;
 	const bool IsClearRoom() const;
 	~MapManager();
 };
