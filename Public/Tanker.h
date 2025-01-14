@@ -2,6 +2,8 @@
 #include "Monster.h"
 #include <random>
 
+class DungeonManager;
+
 class Tanker : public Monster
 {
 public:
@@ -20,7 +22,6 @@ public:
     void TakeDamage(int damage) override;
     void Skill() override;
     bool Canskill() override;
-
 private:
     bool CanReflection(int damage); //탱커 고유 스킬, 반사데미지 줌, 스킬 성공 여부를 반환
     //테스트 함수

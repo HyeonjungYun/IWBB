@@ -147,6 +147,9 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 		{ 
 			cout << Player->GetName() << "(이)가 " << Player->GetAttack() << "만큼 " << Monster->GetName() << "(을)를 공격했다!" << endl;
 			Monster->TakeDamage(Player->GetAttack());
+			if (nullptr != dynamic_cast<Tanker*>(Monster))
+				Player->TakeDamage(dynamic_cast<Tanker*>(Monster)->GetReflectionDamage());
+			
 			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
 			
 			if (Player->GetHp() <= 0)
