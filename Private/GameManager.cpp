@@ -44,6 +44,7 @@ void GameManager::GamePlaying()
 		if (choice == "3")
 		{
 			_Character->PrintInventory();
+			_Character->UseItem();
 			continue;
 		}
 		if (choice == "4")
