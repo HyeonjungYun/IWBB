@@ -3,6 +3,7 @@
 Tanker::Tanker(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLevel, MonsterType)
 {
 	int randomValue = CreateRandomValue(0, 1);
+
 	if (randomValue == 1)
 		_Monstername = "그라가스";
 	else
@@ -19,6 +20,7 @@ void Tanker::Reflection(int damage)
 		cout << _Monstername << "가 스킬을 사용했다!!" << endl;
 		cout << _Monstername << "가 데미지 " << damage << "를 입고 " << ReflectionDamage << "를 반사했다." << endl;
 		_MonsterHP -= damage;
+
 
 	}
 	if (randomValue == 1)
@@ -41,6 +43,7 @@ void Tanker::TakeDamage(int damage)
 void Tanker::MonsterAction()
 {
 	Attack();
+
 }
 
 int Tanker::CalReflectionDamage(int damage) //반사데미지
@@ -58,4 +61,5 @@ int Tanker::CalReflectionDamage(int damage) //반사데미지
 int Tanker::Attack()
 {
 	return _MonsterAttack;
+
 }

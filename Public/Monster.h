@@ -5,6 +5,7 @@ class Monster
 {
 public:
     Monster(int MapLevel, MonsterList::Monster MonsterType);
+
     string GetName();
     int GetHp();
     int GetGold();
@@ -12,6 +13,7 @@ public:
     int GetAttack();
     MonsterList::Monster GetMonsterTypeID();
     virtual void MonsterAction() = 0;
+
     virtual void TakeDamage(int damage) = 0;
     virtual void PrintMonster() const;
     virtual ~Monster();
@@ -24,4 +26,5 @@ protected:
     int _MonsterGold;
     int _MonsterAttack;
     MonsterList::Monster _TypeID;
+
 };
