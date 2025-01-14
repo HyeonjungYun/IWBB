@@ -6,7 +6,6 @@ using namespace std;
 class Monster
 {
 public:
-    Monster(){}
     Monster(string Monstername, int MonsterMaxHP, int MonsterHP, int MonsterEXP, int MonsterGold, int MonsterAttack)
         :_Monstername(Monstername), _MonsterMaxHP(MonsterMaxHP), _MonsterHP(MonsterHP), _MonsterEXP(MonsterEXP), _MonsterGold(MonsterGold), _MonsterAttack(MonsterAttack), _Damage(0) //생성자의 매개변수로 멤버변수 초기화
     {

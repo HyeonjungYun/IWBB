@@ -1,28 +1,33 @@
-﻿#pragma once
+﻿#ifndef _DUNGEON_MANAGER_H_
+#define _DUNGEON_MANAGER_H_
+
 #include "pch.h"
-class Character;
-class Monster;
-class MapManager;
+#include "MapManager.h"
+#include "Character.h"
+#include "Monster.h"
 
 class DungeonManager
 {
 public:
-	DungeonManager(Character* Player, MapManager* MapManager):Player(Player), MM(MapManager),IsDungeonEnd(false), Monster(nullptr), eFightResult(FIGHTEND), IsBossMonster(false){}
+	DungeonManager(Character* _Character, int MapLevel) 
+		: Player(_Character), MM(new MapManager(MapLevel)), IsDungeonEnd(false), DungeonMapLevel(MapLevel), eFightResult(FIGHTEND), IsBossMonster(false) {}
 	~DungeonManager(){ delete this; }
 
 public:
-	void EnterDungeon(Character* Player, MapManager* MM); // 전체 던전 클리어하면 종료
-	bool IsDungeonClear();
+	bool EnterDungeon(); // 전체 던전 클리어하면 종료
+	bool IsExitDungeon();
 	bool CanMove(MapManager* MM);
 	void Move(MapManager* MM);
-	int GetMonsterGold();
-	void Fight(Character* Player, MapManager* MM); 
+	void Fight(MapManager* MM); 
+	bool CanRun();
 
 private:
-	Monster* Monster;
 	Character* Player;
 	MapManager* MM;
 	bool IsDungeonEnd;
 	bool IsBossMonster;
+	int DungeonMapLevel;
 	FightResult eFightResult;
 };
+
+#endif
