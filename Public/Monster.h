@@ -4,7 +4,7 @@
 class Monster
 {
 public:
-    Monster(int MapLevel);
+    Monster(int MapLevel, MonsterList::Monster MonsterType);
     string GetName();
     int GetHp();
     int GetGold();

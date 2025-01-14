@@ -19,10 +19,10 @@ void GameManager::GamePlaying()
 	{
 		string choice;
 
-		cout << "아래로 내려가는 계단이 보인다." << endl;
 		cout << "-------------------------------------------" << endl;
 		_Character->PrintCharacter();
 		cout << "-------------------------------------------" << endl;
+		cout << endl << "아래로 내려가는 계단이 보인다." << endl;
 		cout << "1. 계단을 내려간다." << endl;
 		cout << "2. 상점을 이용한다." << endl;
 		cout << "3. 인벤토리를 열어본다." << endl;

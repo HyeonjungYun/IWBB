@@ -6,7 +6,7 @@
 class Attacker : public Monster
 {
 public:
-    Attacker(int MapLevel);
+    Attacker(int MapLevel, MonsterList::Monster MonsterType);
     ~Attacker();
     int Attack();
     void TakeDamage(int damage) override;

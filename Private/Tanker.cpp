@@ -1,14 +1,12 @@
 ﻿#include "Tanker.h"
 
-Tanker::Tanker(int MapLevel) : Monster(MapLevel)
+Tanker::Tanker(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLevel, MonsterType)
 {
 	int randomValue = CreateRandomValue(0, 1);
 	if (randomValue == 1)
 		_Monstername = "그라가스";
 	else
 		_Monstername = "라인하르트";
-
-	_TypeID = MonsterList::TANKER;
 }
 
 void Tanker::Reflection(int damage)

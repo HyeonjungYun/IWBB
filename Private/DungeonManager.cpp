@@ -1,7 +1,6 @@
-﻿#include "DungeonManager.h"
-#include "MapManager.h"
-#include "Character.h"
+#include "DungeonManager.h"
 #include "Tanker.h"
+#include "Attacker.h"
 #include "Healer.h"
 #include "Monster.h"
 
@@ -58,6 +57,12 @@ bool DungeonManager::IsExitDungeon()
 	{
 		IsDungeonEnd = true;
 		IsBossMonster = false;
+
+		cout << "던전 탐험을 마쳤습니다." << endl;
+		cout << "던전 탐험 보상으로 " << DungeonMapLevel * 150 << "G를 얻었습니다." << endl;
+		cout << "던전 탐험 보상으로 " << DungeonMapLevel * 100 << "EXP를 얻었습니다." << endl;
+		Player->IncreaseGold(DungeonMapLevel * 150);
+		Player->IncreaseEXP(DungeonMapLevel * 100);
 
 		cout << "던전을 나가는 중입니다";
 		Sleep(1000);
@@ -130,51 +135,11 @@ void DungeonManager::Move(MapManager* MM)
 
 void DungeonManager::Fight(MapManager* MM)
 {
-
-	//Monster* monster = new Tanker("그라가스", 10, 10, 20, 100, 10);
-	////싸움
-	//while (true)
-	//{
-	//	cout << Player->GetName() << "(이)가 " << Player->GetAttack() << "만큼 " << monster->GetName() << "(을)를 공격했다!" << endl;
-	//	monster->TakeDamage(Player->GetAttack());
-	//	if (nullptr != dynamic_cast<Tanker*>(monster))
-	//		Player->TakeDamage(dynamic_cast<Tanker*>(monster)->GetReflectionDamage());
-	//		
-	//	cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << monster->GetName() << " 체력 : " << monster->GetHp() << endl;
-	//		
-	//	if (Player->GetHp() <= 0)
-	//	{
-	//		eFightResult = PLAYERLOSE;
-	//		break;
-	//	}
-	//	if (monster->GetHp() <= 0)
-	//	{
-	//		eFightResult = PLAYERWIN;
-	//		break;
-	//	}
-
-	//	cout << monster->GetName() << "(이)가 " << monster->GetAttack() << "만큼 " << Player->GetName() << "(을)를 공격했다!" << endl;
-	//	Player->TakeDamage(monster->GetAttack());
-	//	cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << monster->GetName() << " 체력 : " << monster->GetHp() << endl;
-
-	//	if (Player->GetHp() <= 0)
-	//	{
-	//		eFightResult = PLAYERLOSE;
-	//		break;
-	//	}
-	//	if (monster->GetHp() <= 0)
-	//	{
-	//		eFightResult = PLAYERWIN;
-	//		break;
-	//	}
-
-	//}
-
-	Monster* monster = new Tanker("그라가스", 10, 10, 20, 100, 10);
-	monster->PrintMonster();
+	Monster* monster = CreateRandomMonster();
 
 	while (1)
 	{
+		monster->PrintMonster();
 		cout << "무엇을 하시겠습니까?" << endl;
 		cout << "1.공격 2. 아이템 3. 도망친다." << endl;
 		cout << "입력 : ";
@@ -193,6 +158,11 @@ void DungeonManager::Fight(MapManager* MM)
 			if (monster->GetHp() <= 0)
 			{
 				cout << "몬스터가 쓰러졌습니다." << endl;
+				cout << "골드" << monster->GetGold() << "G를 획득했습니다." << endl;
+				cout << "경험치" << monster->GetEXP() << "EXP를 획득했습니다." << endl;
+				//플레이어 골드, 경험치 획득
+				Player->IncreaseGold(monster->GetGold());
+				Player->IncreaseEXP(monster->GetEXP());
 				eFightResult = PLAYERWIN;
 				return;
 			}
@@ -210,9 +180,17 @@ void DungeonManager::Fight(MapManager* MM)
 			cout << "도망치지 못 했습니다." << endl;
 		}
 		
-		Player->SetHP(Player->GetHp() - monster->GetAttack());
-		cout << monster->GetName() << "가 " << Player->GetName() << "에게 " << Player->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
-		cout << monster->GetName() << "의 HP : " << monster->GetHp() << endl;
+
+		if (monster->GetMonsterTypeID() == MonsterList::HEALER)
+		{
+			monster->MonsterAction();
+		}
+		else
+		{
+			Player->SetHP(Player->GetHp() - monster->GetAttack());
+			cout << monster->GetName() << "가 " << Player->GetName() << "에게 " << Player->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+			cout << monster->GetName() << "의 HP : " << monster->GetHp() << endl;
+		}
 
 		if (Player->GetHp() <= 0)
 		{
@@ -224,13 +202,23 @@ void DungeonManager::Fight(MapManager* MM)
 
 bool DungeonManager::CanRun()
 {
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<> dist(1, 10);
-
-	int rate = dist(gen);
+	int rate = CreateRandomValue(1, 10);
 	
 	if (rate < 4)
 		return true;
 	return false;
+}
+
+Monster* DungeonManager::CreateRandomMonster()
+{
+	int MonsterValue = CreateRandomValue(1,3);
+	if (MonsterValue == 1)
+	{
+		return new Tanker(DungeonMapLevel, MonsterList::TANKER);
+	}
+	if (MonsterValue == 2)
+	{
+		return new Attacker(DungeonMapLevel, MonsterList::ATTACKER);
+	}
+	return new Healer(DungeonMapLevel, MonsterList::HEALER);
 }

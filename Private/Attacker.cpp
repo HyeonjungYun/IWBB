@@ -1,6 +1,6 @@
 #include "Attacker.h"
 
-Attacker::Attacker(int MapLevel) : Monster(MapLevel)
+Attacker::Attacker(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLevel, MonsterType)
 {
 	int randomValue = CreateRandomValue(0, 1);
 
@@ -15,7 +15,6 @@ Attacker::Attacker(int MapLevel) : Monster(MapLevel)
 
 
 	_AttackCount = 0;
-	_TypeID = MonsterList::ATTACKER;
 }
 
 void Attacker::TakeDamage(int damage)

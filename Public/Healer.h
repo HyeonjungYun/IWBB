@@ -6,7 +6,7 @@
 class Healer : public Monster
 {
 public:
-    Healer(int MapLevel);
+    Healer(int MapLevel, MonsterList::Monster MonsterType);
     void TakeDamage(int damage) override;
     void MonsterAction() override;
     bool CanIgnore(); // 힐러 고유 스킬 : 무시, 받는 공격을 무시함

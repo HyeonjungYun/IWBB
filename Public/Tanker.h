@@ -4,7 +4,7 @@
 class Tanker : public Monster
 {
 public:
-    Tanker(int MapLevel);
+    Tanker(int MapLevel, MonsterList::Monster MonsterType);
     ~Tanker() { delete this; }
     void TakeDamage(int damage) override;
     void MonsterAction() override;

@@ -1,14 +1,12 @@
 ﻿#include "Healer.h"
 
-Healer::Healer(int MapLevel) : Monster(MapLevel)
+Healer::Healer(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLevel, MonsterType)
 {
 	int randomValue = CreateRandomValue(0, 1); // 0,1;
 	if (randomValue == 1)
 		_Monstername = "메르시";
 	else
 		_Monstername = "소나";
-
-	_TypeID = MonsterList::HEALER;
 }
 
 bool Healer::CanIgnore()
