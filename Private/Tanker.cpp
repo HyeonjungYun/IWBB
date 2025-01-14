@@ -4,22 +4,18 @@ Tanker::Tanker()
 }
 Tanker::Tanker(int MapLevel) : Monster(MapLevel)
 {
-	random_device rd; //랜덤 생성 클래스 선언
-	mt19937 gen(rd()); // 난수
-	uniform_int_distribution<> dist(0, 1);
-	int randomValue = dist(gen); // 0,1;
+	int randomValue = CreateRandomValue(0, 1);
 	if (randomValue == 1)
 		_Monstername = "그라가스";
 	else
 		_Monstername = "라인하르트";
+
+	_TypeID = MonsterList::TANKER;
 }
 
 void Tanker::Reflection(int damage)
 {
-	random_device rd; //랜덤 생성 클래스 선언
-	mt19937 gen(rd()); // 난수
-	uniform_int_distribution<> dist(0, 1);
-	int randomValue = dist(gen); // 0,1;
+	int randomValue = CreateRandomValue(0, 1);
 	if (randomValue == 0)
 	{
 		int ReflectionDamage = CalReflectionDamage(damage);

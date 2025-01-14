@@ -9,6 +9,7 @@ Attacker::Attacker(int MapLevel) : Monster(MapLevel)
 		_Monstername = "키류 카즈마";
 
 	_AttackCount = 0;
+	_TypeID = MonsterList::ATTACKER;
 }
 
 void Attacker::TakeDamage(int damage)
