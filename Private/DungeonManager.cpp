@@ -141,7 +141,7 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 	
 	int turn = 0; //0:플레이어턴, 1:
 	//싸움
-	while (Player->GetHp() > 0 && Monster->GetHp() > 0)
+	while (true)
 	{
 		if(turn == 0)
 		{ 
@@ -149,6 +149,16 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 			Monster->TakeDamage(Player->GetAttack());
 			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
 			
+			if (Player->GetHp() <= 0)
+			{
+				eFightResult = PLAYERLOSE;
+				break;
+			}
+			if (Monster->GetHp() <= 0)
+			{
+				eFightResult = PLAYERWIN;
+				break;
+			}
 			turn = 1;
 		}
 		else
@@ -157,13 +167,22 @@ void DungeonManager::Fight(Character* Player, MapManager* MM)
 			Player->TakeDamage(Monster->GetAttack());
 			cout << Player->GetName() << " 체력 : " << Player->GetHp() << ", " << Monster->GetName() << " 체력 : " << Monster->GetHp() << endl;
 
+			if (Player->GetHp() <= 0)
+				eFightResult = PLAYERLOSE;
+			if (Monster->GetHp() <= 0)
+				eFightResult = PLAYERWIN;
+			if (Player->GetHp() <= 0)
+			{
+				eFightResult = PLAYERLOSE;
+				break;
+			}
+			if (Monster->GetHp() <= 0)
+			{
+				eFightResult = PLAYERWIN;
+				break;
+			}
 			turn = 0;
 		}
 
-
-		if (Player->GetHp() <= 0)
-			eFightResult = PLAYERLOSE;
-		if (Monster->GetHp() <= 0)
-			eFightResult = PLAYERWIN;
 	}
 }
