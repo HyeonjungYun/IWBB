@@ -2,10 +2,7 @@
 
 Healer::Healer(int MapLevel)
 {
-	random_device rd; //랜덤 생성 클래스 선언
-	mt19937 gen(rd()); // 난수
-	uniform_int_distribution<> dist(0, 1);
-	int randomValue = dist(gen); // 0,1;
+	int randomValue = CreateRandomValue(0, 1); // 0,1;
 	if (randomValue == 1)
 		_Monstername = "메르시";
 	else
@@ -27,11 +24,7 @@ bool Healer::CanIgnore()
 
 void Healer::TakeDamage(int damage)
 {
-	random_device rd; //랜덤 생성 클래스 선언
-	mt19937 gen(rd()); // 난수
-	uniform_int_distribution<> dist(0, 10);
-	
-	if (dist(gen) < 4)
+	if (int randomValue = CreateRandomValue(1, 10) < 4)
 	{
 		cout << _Monstername << "이(가) 공격을 무시했다." << endl;
 	}

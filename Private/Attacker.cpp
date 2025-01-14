@@ -2,10 +2,7 @@
 
 Attacker::Attacker(int MapLevel) : Monster(MapLevel)
 {
-	random_device rd; //랜덤 생성 클래스 선언
-	mt19937 gen(rd()); // 난수
-	uniform_int_distribution<> dist(0 , 1);
-	int randomValue = dist(gen); // 0,1;
+	int randomValue = CreateRandomValue(0, 1);
 	if ( randomValue == 1 )
 		_Monstername = "에키드나";
 	else
