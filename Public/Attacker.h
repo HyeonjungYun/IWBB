@@ -10,7 +10,7 @@ public:
     ~Attacker();
     int Attack();
     void TakeDamage(int damage) override;
-
+    void MonsterAction() override;
 private:
     int _AttackCount;
 };

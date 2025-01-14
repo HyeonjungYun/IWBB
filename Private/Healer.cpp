@@ -1,12 +1,14 @@
 ﻿#include "Healer.h"
 
-Healer::Healer(int MapLevel)
+Healer::Healer(int MapLevel) : Monster(MapLevel)
 {
 	int randomValue = CreateRandomValue(0, 1); // 0,1;
 	if (randomValue == 1)
 		_Monstername = "메르시";
 	else
 		_Monstername = "소나";
+
+	_TypeID = MonsterList::HEALER;
 }
 
 bool Healer::CanIgnore()
@@ -32,6 +34,11 @@ void Healer::TakeDamage(int damage)
 	{
 		_MonsterHP -= damage; // 현재 체력 -= 데미지
 	}
+}
+
+void Healer::MonsterAction()
+{
+	IncreaseHP();
 }
 
 void Healer::IncreaseHP() // 상위클래스에서 currentHP, maxHP 필요

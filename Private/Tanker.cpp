@@ -1,7 +1,5 @@
 ﻿#include "Tanker.h"
-Tanker::Tanker()
-{
-}
+
 Tanker::Tanker(int MapLevel) : Monster(MapLevel)
 {
 	int randomValue = CreateRandomValue(0, 1);
@@ -42,6 +40,11 @@ void Tanker::TakeDamage(int damage)
 	if (_MonsterHP <= 0) { _MonsterHP = 0; return; }
 }
 
+void Tanker::MonsterAction()
+{
+	Attack();
+}
+
 int Tanker::CalReflectionDamage(int damage) //반사데미지
 {
 	int ReflectionDamage = (int)(round(damage * 0.2)); // (받은 데미지 * 0.2) 의 값에 반올림으로 반사 데미지를 정함 
@@ -52,4 +55,9 @@ int Tanker::CalReflectionDamage(int damage) //반사데미지
 	}
 	else
 		return ReflectionDamage;
+}
+
+int Tanker::Attack()
+{
+	return _MonsterAttack;
 }
