@@ -4,21 +4,22 @@
 #include "pch.h"
 #include "Monster.h"
 
-class BossMonster
+class BossMonster : public Monster
 {
 public:
 	BossMonster();
 	int GetBossHP() const;
 	int GetBossMaxHP() const;
-	void AttackedBoss(int CharacterAttack);
-	bool AttackBoss();
+	int GetAttackCount() const;
+	int AttackBoss();
+	void MonsterAction() override;
+	void TakeDamage(int damage) override;
+	void EncounterBoss();
+	void ClearBoss();
+	void LoseBoss();
 	~BossMonster();
 
 private:
-	string _BossName;
-	int _BossHP;
-	int _BossMaxHP;
-	int _BossAttack;
 	int _AttackCount;
 };
 
