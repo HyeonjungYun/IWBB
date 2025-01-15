@@ -36,8 +36,11 @@ void GameManager::GamePlaying()
 		if (choice == "1")
 		{
 			DungeonManager* _DungeonManager = new DungeonManager(_Character, _MapLevel);
-			if (_Character->GetLevel() >= 11)
+			if (_Character->GetLevel() >= 11) 
+			{
 				EncounterBossMonster();
+				break;
+			}
 			if (!_DungeonManager->EnterDungeon())
 			{
 				_MapLevel++;

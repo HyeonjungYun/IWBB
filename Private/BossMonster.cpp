@@ -33,7 +33,8 @@ void BossMonster::TakeDamage(int damage)
 {
     _MonsterHP -= damage;
 
-    if (_MonsterHP <= 0) { _MonsterHP = 0; return; }
+    if (_MonsterHP <= 0) 
+        _MonsterHP = 0;
 }
 
 void BossMonster::MonsterAction()

@@ -2,6 +2,7 @@
 
 Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
 {
+    _DungeonMapLevel = MapLevel;
     if (MonsterType == MonsterList::ATTACKER)
     {
         _Monstername = " ";
@@ -66,7 +67,9 @@ int Monster::GetEXP()
 
 int Monster::GetAttack()
 {
-    return _MonsterAttack;
+    int AttackValue = CreateRandomValue(_MonsterAttack - _DungeonMapLevel * 2, _MonsterAttack + _DungeonMapLevel * 2);
+
+    return AttackValue;
 }
 
 void Monster::PrintMonster() const

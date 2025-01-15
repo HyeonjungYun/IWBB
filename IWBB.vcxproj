@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Public\Attacker.h" />
+    <ClInclude Include="Public\BossMonster.h" />
     <ClInclude Include="Public\Character.h" />
     <ClInclude Include="Public\DungeonManager.h" />
     <ClInclude Include="Public\GameManager.h" />
@@ -153,6 +154,7 @@
       <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
+    <ClCompile Include="Private\BossMonster.cpp" />
     <ClCompile Include="Private\Character.cpp" />
     <ClCompile Include="Private\DungeonManager.cpp" />
     <ClCompile Include="Private\GameManager.cpp" />

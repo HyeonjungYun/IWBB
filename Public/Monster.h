@@ -23,5 +23,6 @@ protected:
     int _MonsterEXP;
     int _MonsterGold;
     int _MonsterAttack;
+    int _DungeonMapLevel;
     MonsterList::Monster _TypeID;
 };

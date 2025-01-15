@@ -17,7 +17,7 @@ public:
 	void SetMapLevel();
 	~GameManager();
 
-	static void EncounterBossMonster();
+	void EncounterBossMonster();
 private:
 	Character* _Character;
 	StoreManager* _StoreManager;
