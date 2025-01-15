@@ -32,6 +32,16 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _MonsterAttack = 10 + (MapLevel * 5);
         _TypeID = MonsterList::TANKER;
     }
+    if (MonsterType == MonsterList::BOSS)
+    {
+        _Monstername = "BigBalls 드래곤";
+        _MonsterMaxHP = 1300;
+        _MonsterHP = _MonsterMaxHP;
+        _MonsterAttack = 999999;
+        _MonsterEXP = 0;
+        _MonsterGold = 0;
+        _TypeID = MonsterList::BOSS;
+    }
 }
 
 string Monster::GetName()

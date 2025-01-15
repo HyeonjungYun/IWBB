@@ -1,4 +1,5 @@
 ﻿#include "GameManager.h"
+#include "BossMonster.h"
 
 GameManager::GameManager()
 {
@@ -11,6 +12,7 @@ GameManager::GameManager()
 	_MapLevel = 1;
 	_Character = new Character(name);
 	_StoreManager = new StoreManager(_Character);
+	_IsGameClear = false;
 }
 
 void GameManager::GamePlaying()
@@ -34,6 +36,8 @@ void GameManager::GamePlaying()
 		if (choice == "1")
 		{
 			DungeonManager* _DungeonManager = new DungeonManager(_Character, _MapLevel);
+			if (_Character->GetLevel() >= 11)
+				EncounterBossMonster();
 			if (!_DungeonManager->EnterDungeon())
 			{
 				_MapLevel++;
@@ -55,6 +59,10 @@ void GameManager::GamePlaying()
 		{
 			break;
 		}
+		if (_IsGameClear)
+		{
+			break;
+		}
 		cout << "잘못 입력하셨습니다." << endl;
 	}
 }
@@ -67,6 +75,53 @@ int GameManager::GetMapLevel() const
 void GameManager::SetMapLevel()
 {
 	_MapLevel++;
+}
+
+void GameManager::EncounterBossMonster()
+{
+	BossMonster* Boss = new BossMonster();
+	Boss->EncounterBoss();
+
+	while (1)
+	{
+		_Character->PrintCharacter();
+		Boss->PrintMonster();
+
+		cout << "무엇을 하시겠습니까?\n1. 공격" << endl;
+		string choice;
+		getline(cin, choice);
+		system("cls");
+
+		if (choice == "1")
+		{
+			Boss->TakeDamage(_Character->GetAttack());
+
+			cout << _Character->GetName() << "가 " << Boss->GetName() << "에게 " << _Character->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+			cout << Boss->GetName() << "의 HP : " << Boss->GetHp() << endl;
+
+			if (Boss->AttackBoss() != 0)
+			{
+				cout << 5 - Boss->GetAttackCount() << "번 남았습니다." << endl;
+			}
+			else
+			{
+				_Character->SetHP(_Character->GetHp() - Boss->GetAttack());
+				cout << Boss->GetName() << "가 " << _Character->GetName() << "에게 " << Boss->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+				cout << _Character->GetName() << "의 HP : " << _Character->GetHp() << endl;
+
+				_IsGameClear = true;
+				Boss->LoseBoss();
+				break;
+			}
+
+			if (Boss->GetHp() <= 0)
+			{
+				_IsGameClear = true;
+				Boss->ClearBoss();
+				break;
+			}
+		}
+	}
 }
 
 GameManager::~GameManager()

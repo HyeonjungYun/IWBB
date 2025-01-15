@@ -39,7 +39,8 @@ namespace MonsterList
 	{
 		ATTACKER = 1,
 		HEALER,
-		TANKER
+		TANKER,
+		BOSS
 	};
 }
 
