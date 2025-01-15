@@ -67,6 +67,11 @@ int Character::GetGold() const
 	return _CharacterGold;
 }
 
+int Character::GetLevel() const
+{
+	return _CharacterLevel;
+}
+
 void Character::IncreaseGold(int TempGold)	// 골드 획득 시 골드 증가
 {
 	_CharacterGold += TempGold;
