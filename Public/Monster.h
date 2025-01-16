@@ -9,8 +9,8 @@ public:
     int GetHp();
     int GetGold();
     int GetEXP();
-    int GetAttack();
     MonsterList::Monster GetMonsterTypeID();
+    virtual int GetAttack();
     virtual void MonsterAction() = 0;
     virtual void TakeDamage(int damage) = 0;
     virtual void PrintMonster() const;

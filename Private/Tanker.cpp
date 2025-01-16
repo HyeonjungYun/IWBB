@@ -9,7 +9,7 @@ Tanker::Tanker(int MapLevel, MonsterList::Monster MonsterType) : Monster(MapLeve
 		_Monstername = "라인하르트";
 }
 
-void Tanker::Reflection(int damage)
+int Tanker::Reflection(int damage)
 {
 	int randomValue = CreateRandomValue(0, 1);
 	if (randomValue == 0)
@@ -17,23 +17,23 @@ void Tanker::Reflection(int damage)
 		int ReflectionDamage = CalReflectionDamage(damage);
 
 		cout << _Monstername << "가 스킬을 사용했다!!" << endl;
-		cout << _Monstername << "가 데미지 " << damage << "를 입고 " << ReflectionDamage << "를 반사했다." << endl;
-		_MonsterHP -= damage;
-
+		cout << _Monstername << "가 " << ReflectionDamage << "만큼의 대미지를 반사하였다. " << damage - ReflectionDamage << "만큼의 대미지를 입었다. " << endl;
+		
+		return ReflectionDamage;
 	}
 	if (randomValue == 1)
 	{
 		cout << _Monstername << "가 스킬 사용에 실패했다!!" << endl;
-		cout << _Monstername << "가 데미지 " << damage << "를 입었다 " << endl;
+		cout << _Monstername << "가 대미지 " << damage << "를 입었다 " << endl;
 
+		return 0;
 	}
 }
 
 void Tanker::TakeDamage(int damage)
 {
 	int Damage = damage;
-	Reflection(damage);
-	_MonsterHP -= Damage;
+	_MonsterHP -= Damage - Reflection(damage);
 
 	if (_MonsterHP <= 0) { _MonsterHP = 0; return; }
 }

@@ -8,7 +8,7 @@ class Attacker : public Monster
 public:
     Attacker(int MapLevel, MonsterList::Monster MonsterType);
     ~Attacker();
-    int Attack();
+    int GetAttack() override;
     void TakeDamage(int damage) override;
     void MonsterAction() override;
 private:
