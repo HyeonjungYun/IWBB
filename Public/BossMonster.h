@@ -11,7 +11,7 @@ public:
 	int GetBossHP() const;
 	int GetBossMaxHP() const;
 	int GetAttackCount() const;
-	int AttackBoss();
+	int GetAttack();
 	void MonsterAction() override;
 	void TakeDamage(int damage) override;
 	void EncounterBoss();

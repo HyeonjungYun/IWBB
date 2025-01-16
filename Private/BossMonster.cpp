@@ -20,12 +20,13 @@ int BossMonster::GetAttackCount() const
     return _AttackCount;
 }
 
-int BossMonster::AttackBoss()
+int BossMonster::GetAttack()
 {
+    _AttackCount++;
+
     if (_AttackCount >= 5)
         return _MonsterAttack;
 
-    _AttackCount++;
     return 0;
 }
 
@@ -55,9 +56,9 @@ void BossMonster::EncounterBoss()
     Sleep(1000);
 }
 
-void BossMonster::ClearBoss()
+void BossMonster::LoseBoss()
 {
-    system("cls");
+    //system("cls");
     cout << "이 던전의 주인, 용감함의 상징 Big Balls 드래곤에게 패배하였습니다." << endl;
     Sleep(500);
     cout << "Big Balls 드래곤 : 너는 너의 용기가 충분하다고 생각하나?" << endl;
@@ -68,7 +69,7 @@ void BossMonster::ClearBoss()
     Sleep(1000);
 }
 
-void BossMonster::LoseBoss()
+void BossMonster::ClearBoss()
 {
     system("cls");
     cout << "이 던전의 주인, 용감함의 상징 Big Balls 드래곤을 쓰러뜨렸습니다." << endl;

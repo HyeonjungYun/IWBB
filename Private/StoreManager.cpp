@@ -11,7 +11,7 @@ void StoreManager::VisitStore()		// 물건 구매를 관리하는 함수
 	{
 		cout << "상점" << endl;
 		cout << "상품 구매" << endl;
-		cout << "1. HP포션, 100Gold\n2.레벨업권, 1000Gold\n3.용기의 박스, 500Gold\n4.상점 나가기" << endl;
+		cout << "1. HP포션, 100Gold\n2.레벨업권, 1000Gold\n3.용기의 박스, 50Gold\n4.상점 나가기" << endl;
 		cout << "-------------------------------------------" << endl;
 		cout << "현재 레벨업권을 구매하시면 " << (_Character->_CharacterEXP / 100) << "레벨업 가능합니다." << endl;
 		cout << "HP가 " << (_Character->_CharacterEXP / 100) << " x 20만큼 증가합니다." << endl;
@@ -50,7 +50,7 @@ void StoreManager::VisitStore()		// 물건 구매를 관리하는 함수
 
 void StoreManager::BuyHPPotion()		// 포션을 구매하고 소지 골드를 차감하는 함수
 {
-	if (_Character->_CharacterGold > POTION_GOLD)
+	if (_Character->_CharacterGold >= POTION_GOLD)
 	{
 		_Character->_CharacterGold -= POTION_GOLD;
 		_Character->AddItemToInventory(ItemList::POTION);
@@ -63,7 +63,7 @@ void StoreManager::BuyHPPotion()		// 포션을 구매하고 소지 골드를 차
 
 void StoreManager::BuyLevelUpCoupon()		// 레벨업권을 구매하고 소지 골드를 차감하는 함수
 {
-	if (_Character->_CharacterGold > LEVEL_COUPON_GOLD)
+	if (_Character->_CharacterGold >= LEVEL_COUPON_GOLD)
 	{
 		_Character->_CharacterGold -= LEVEL_COUPON_GOLD;
 		_Character->CharacterLevelUp();
@@ -76,10 +76,10 @@ void StoreManager::BuyLevelUpCoupon()		// 레벨업권을 구매하고 소지 �
 
 void StoreManager::BuyBB_Box()		// 용기의 상자를 구매하고 소지 골드를 차감하는 함수
 {
-	if (_Character->_CharacterGold > BB_BOX_GOLD)
+	if (_Character->_CharacterGold >= BB_BOX_GOLD)
 	{
 		_Character->_CharacterGold -= BB_BOX_GOLD;
-		_Character->AddItemToInventory(ItemList::POTION);
+		_Character->AddItemToInventory(ItemList::BB_BOX);
 		cout << "랜덤박스를 구매하였습니다." << endl;
 		return;
 	}

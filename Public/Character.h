@@ -36,6 +36,7 @@ public:
  //테스트를 위한 
     int _mapLevel;
     void CharacterSkill() { cout << "캐릭터 스킬 사용, 아무것도 없음" << endl; }
+    void SetLevel(int Level);
 
 public:
     string _CharacterName;
