@@ -50,17 +50,18 @@ string Monster::GetName()
     return _Monstername;
 }
 
-int Monster::GetHp()
+int Monster::GetHp() const
 {
+    if (_MonsterHP < 0) return 0;
     return _MonsterHP;
 }
 
-int Monster::GetGold()
+int Monster::GetGold() const
 {
     return _MonsterGold;
 };
 
-int Monster::GetEXP()
+int Monster::GetEXP() const
 {
     return _MonsterEXP;
 }

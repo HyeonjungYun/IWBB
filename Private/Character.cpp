@@ -22,6 +22,8 @@ string Character::GetName()
 
 int Character::GetHp() const
 { 
+	if (_CharacterHP < 0) return 0;
+
 	return _CharacterHP; 
 }
 
