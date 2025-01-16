@@ -62,7 +62,7 @@ void Character::IncreaseEXP(int TempEXP)	// 경험치 획득 시 경험치 증�
 {
 	_CharacterEXP += TempEXP;
 
-	if (_CharacterEXP > (11 - _CharacterLevel) * 100) _CharacterEXP = (11 - _CharacterLevel) * 100;
+	if (_CharacterEXP > (15 - _CharacterLevel) * 100) _CharacterEXP = (15 - _CharacterLevel) * 100;
 }
 
 int Character::GetGold() const	
@@ -95,9 +95,9 @@ void Character::TakeDamage(int damage)		// 대미지 입을 시 HP감소
 
 void Character::CharacterLevelUp()		// 캐릭터 레벨업 시 스탯 증가 및 경험치 감소
 {
-	_CharacterMaxHP += ((_CharacterEXP / 100) * 2) * 10;
+	_CharacterMaxHP += ((_CharacterEXP / 100) * 2) * 10 + (int)round(pow(1.9, (_CharacterEXP / 100)));
 	_CharacterHP = _CharacterMaxHP;
-	_CharacterAttack += ((_CharacterEXP / 100) * 2) * 10;
+	_CharacterAttack += ((_CharacterEXP / 100) * 2) * 10 + (int)round(pow(1.9, (_CharacterEXP / 100)));
 	_CharacterLevel += (_CharacterEXP / 100);
 	_CharacterEXP %= 100;
 }
@@ -108,8 +108,11 @@ void Character::PrintCharacter() const	// 현재 캐릭터 스탯 출력
 	cout << " 보유 골드 : " << _CharacterGold << endl;
 	cout << " HP : " << _CharacterHP << "/" << _CharacterMaxHP << ", ";
 	cout << " Attack : " << _CharacterAttack << ", ";
-	cout << " EXP : " << _CharacterEXP << ", ";
-	cout << "애완도둑 : " << _PetTheif << "명" << endl;
+	cout << " EXP : " << _CharacterEXP;
+
+	if (_PetTheif)
+		cout << ", 애완도둑 : " << _PetTheif << "명";
+	cout << endl;
 }
 
 void Character::AddItemToInventory(ItemList::Item TempItem)		// 인벤토리에 아이템 추가

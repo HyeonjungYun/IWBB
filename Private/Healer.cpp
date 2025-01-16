@@ -33,7 +33,7 @@ void Healer::IncreaseHP() // 상위클래스에서 currentHP, maxHP 필요
 		return;
 	}
 
-	int increaseHPAmount = _MonsterHP / 100;
+	int increaseHPAmount = _MonsterMaxHP / 100;
 	_MonsterHP += increaseHPAmount; // 체력 증가
 
 	if (_MonsterHP > _MonsterMaxHP)

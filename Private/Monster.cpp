@@ -8,7 +8,7 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _Monstername = " ";
         _MonsterMaxHP = 150 + (MapLevel * 10);
         _MonsterHP = _MonsterMaxHP;
-        _MonsterEXP = 10 + (MapLevel * 6);
+        _MonsterEXP = 10 + (MapLevel * 30);
         _MonsterGold = 100 + (MapLevel * 17);
         _MonsterAttack = 15 + (MapLevel * 20);
         _TypeID = MonsterList::ATTACKER;
@@ -18,7 +18,7 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _Monstername = " ";
         _MonsterMaxHP = 200 + (MapLevel * 20);
         _MonsterHP = _MonsterMaxHP;
-        _MonsterEXP = 10 + (MapLevel * 6);
+        _MonsterEXP = 10 + (MapLevel * 30);
         _MonsterGold = 100 + (MapLevel * 17);
         _MonsterAttack = 0 + (MapLevel * 0);
         _TypeID = MonsterList::HEALER;
@@ -26,9 +26,9 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
     if (MonsterType == MonsterList::TANKER)
     {
         _Monstername = " ";
-        _MonsterMaxHP = 300 + (MapLevel * 20);
+        _MonsterMaxHP = 300 + (MapLevel * 30);
         _MonsterHP = _MonsterMaxHP;
-        _MonsterEXP = 10 + (MapLevel * 6);
+        _MonsterEXP = 10 + (MapLevel * 20);
         _MonsterGold = 100 + (MapLevel * 17);
         _MonsterAttack = 10 + (MapLevel * 18);
         _TypeID = MonsterList::TANKER;

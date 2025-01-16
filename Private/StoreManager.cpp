@@ -14,8 +14,8 @@ void StoreManager::VisitStore()		// 물건 구매를 관리하는 함수
 		cout << "1. HP포션," << POTION_GOLD <<"Gold\n2.레벨업권, "<< LEVEL_COUPON_GOLD <<"Gold\n3.용기의 박스, "<< BB_BOX_GOLD <<"\n4.상점 나가기" << endl;
 		cout << "-------------------------------------------" << endl;
 		cout << "현재 레벨업권을 구매하시면 " << (_Character->_CharacterEXP / 100) << "레벨업 가능합니다." << endl;
-		cout << "HP가 " << (_Character->_CharacterEXP / 100) << " x 20만큼 증가합니다." << endl;
-		cout << "공격력이 " << (_Character->_CharacterEXP / 100) << " x 20만큼 증가합니다." << endl;
+		cout << "HP가 " << ((_Character->GetEXP() / 100) * 2) * 10 + (int)round(pow(1.9, (_Character->GetEXP() / 100))) << "만큼 증가합니다." << endl;
+		cout << "공격력이 " << ((_Character->GetEXP() / 100) * 2) * 10 + (int)round(pow(1.9, (_Character->GetEXP() / 100))) << " 만큼 증가합니다." << endl;
 		cout << "-------------------------------------------" << endl;
 		cout << "원하시는 번호를 입력하세요. :";
 		string choice;
