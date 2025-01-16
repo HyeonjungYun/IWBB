@@ -59,7 +59,6 @@ void GameManager::GamePlaying()
 		}
 		if (choice == "3")
 		{
-			_Character->PrintInventory();
 			_Character->UseItem();
 			continue;
 		}
@@ -107,21 +106,26 @@ void GameManager::EncounterBossMonster()
 
 		if (choice == "1")
 		{
-			Boss->TakeDamage(_Character->GetAttack());
+			int CharacterAttackValue = _Character->GetAttack();
+			int BossAttackValue = Boss->GetAttack();
+			Boss->TakeDamage(CharacterAttackValue);
 
-			cout << _Character->GetName() << "가 " << Boss->GetName() << "에게 " << _Character->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+			cout << _Character->GetName() << "가 " << Boss->GetName() << "에게 " << CharacterAttackValue << "의 대미지로 공격합니다." << endl;
 			cout << Boss->GetName() << "의 HP : " << Boss->GetHp() << endl;
 
-			if (Boss->AttackBoss() != 0)
+			if (BossAttackValue == 0)
 			{
 				cout << 5 - Boss->GetAttackCount() << "번 남았습니다." << endl;
 			}
 			else
 			{
-				_Character->SetHP(_Character->GetHp() - Boss->GetAttack());
-				cout << Boss->GetName() << "가 " << _Character->GetName() << "에게 " << Boss->GetAttack() << "만큼 대미지를 입혔습니다." << endl;
+				_Character->SetHP(_Character->GetHp() - BossAttackValue);
+				cout << Boss->GetName() << "가 " << _Character->GetName() << "에게 " << BossAttackValue << "의 대매지로 공격합니다." << endl;
 				cout << _Character->GetName() << "의 HP : " << _Character->GetHp() << endl;
+			}
 
+			if (_Character->GetHp() <= 0)
+			{
 				_IsGameClear = true;
 				Boss->LoseBoss();
 				break;

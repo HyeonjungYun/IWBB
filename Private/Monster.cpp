@@ -10,7 +10,7 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _MonsterHP = _MonsterMaxHP;
         _MonsterEXP = 10 + (MapLevel * 6);
         _MonsterGold = 100 + (MapLevel * 17);
-        _MonsterAttack = 15 + (MapLevel * 10);
+        _MonsterAttack = 15 + (MapLevel * 20);
         _TypeID = MonsterList::ATTACKER;
     }
     if (MonsterType == MonsterList::HEALER)
@@ -30,13 +30,13 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _MonsterHP = _MonsterMaxHP;
         _MonsterEXP = 10 + (MapLevel * 6);
         _MonsterGold = 100 + (MapLevel * 17);
-        _MonsterAttack = 10 + (MapLevel * 5);
+        _MonsterAttack = 10 + (MapLevel * 18);
         _TypeID = MonsterList::TANKER;
     }
     if (MonsterType == MonsterList::BOSS)
     {
         _Monstername = "BigBalls 드래곤";
-        _MonsterMaxHP = 1300;
+        _MonsterMaxHP = 1200;
         _MonsterHP = _MonsterMaxHP;
         _MonsterAttack = 999999;
         _MonsterEXP = 0;
@@ -50,17 +50,18 @@ string Monster::GetName()
     return _Monstername;
 }
 
-int Monster::GetHp()
+int Monster::GetHp() const
 {
+    if (_MonsterHP < 0) return 0;
     return _MonsterHP;
 }
 
-int Monster::GetGold()
+int Monster::GetGold() const
 {
     return _MonsterGold;
 };
 
-int Monster::GetEXP()
+int Monster::GetEXP() const
 {
     return _MonsterEXP;
 }

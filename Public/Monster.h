@@ -6,9 +6,9 @@ class Monster
 public:
     Monster(int MapLevel, MonsterList::Monster MonsterType);
     string GetName();
-    int GetHp();
-    int GetGold();
-    int GetEXP();
+    int GetHp() const;
+    int GetGold() const;
+    int GetEXP() const;
     MonsterList::Monster GetMonsterTypeID();
     virtual int GetAttack();
     virtual void MonsterAction() = 0;

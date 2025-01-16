@@ -22,6 +22,8 @@ string Character::GetName()
 
 int Character::GetHp() const
 { 
+	if (_CharacterHP < 0) return 0;
+
 	return _CharacterHP; 
 }
 
@@ -79,8 +81,8 @@ void Character::IncreaseGold(int TempGold)	// 골드 획득 시 골드 증가
 
 	if (_PetTheif)
 	{
-		_CharacterGold += TempGold / 10;
-		cout << "애완 도둑이 추가 골드를 훔쳐왔습니다!" << endl;
+		_CharacterGold += (TempGold / 10) * _PetTheif;
+		cout << "애완 도둑이 추가 골드 "<< (TempGold / 10) * _PetTheif <<"G를 훔쳐왔습니다!" << endl;
 	}
 }
 
@@ -93,9 +95,9 @@ void Character::TakeDamage(int damage)		// 대미지 입을 시 HP감소
 
 void Character::CharacterLevelUp()		// 캐릭터 레벨업 시 스탯 증가 및 경험치 감소
 {
-	_CharacterMaxHP += ((_CharacterEXP / 100) * 2) * 20;
+	_CharacterMaxHP += ((_CharacterEXP / 100) * 2) * 10;
 	_CharacterHP = _CharacterMaxHP;
-	_CharacterAttack += ((_CharacterEXP / 100) * 2) * 20;
+	_CharacterAttack += ((_CharacterEXP / 100) * 2) * 10;
 	_CharacterLevel += (_CharacterEXP / 100);
 	_CharacterEXP %= 100;
 }
@@ -117,28 +119,33 @@ void Character::AddItemToInventory(ItemList::Item TempItem)		// 인벤토리에 
 
 void Character::PrintInventory()		// 현재 인벤토리 현황 출력
 {
-	system("cls");
 	cout << "HP포션 수량 : " << _CurrentInventory[ItemList::POTION] << endl;
 	cout << "용기의 상자 수량 : " << _CurrentInventory[ItemList::BB_BOX] << endl;
 }
 
 void Character::UseItem()
 {
-	cout << "아이템을 사용하시겠습니까?" << endl;
-	cout << "1.HP포션 사용\n2. 용기의 상자 사용\n그 외. 사용하지 않는다." << endl;
-
-	string choice;
-	getline(cin, choice);
-
-	if (choice == "1")
+	while (1)
 	{
-		UseHPPotion();
-		return;
-	}
-	if (choice == "2")
-	{
-		UseBB_Box();
-		return;
+		PrintInventory();
+		cout << "아이템을 사용하시겠습니까?" << endl;
+		cout << "1.HP포션 사용\n2. 용기의 상자 사용\n그 외. 사용하지 않는다." << endl;
+
+		string choice;
+		getline(cin, choice);
+		system("cls");
+
+		if (choice == "1")
+		{
+			UseHPPotion();
+			continue;
+		}
+		if (choice == "2")
+		{
+			UseBB_Box();
+			continue;
+		}
+		break;
 	}
 }
 
@@ -148,6 +155,8 @@ void Character::UseHPPotion()
 	{
 		system("cls");
 		cout << "사용 가능한 HP포션이 없습니다." << endl;
+
+		return;
 	}
 
 	_CurrentInventory[ItemList::POTION]--;
@@ -163,6 +172,8 @@ void Character::UseBB_Box()
 	{
 		system("cls");
 		cout << "사용 가능한 용기의 상자가 없습니다." << endl;
+		
+		return;
 	}
 
 	_CurrentInventory[ItemList::BB_BOX]--;
@@ -183,11 +194,11 @@ void Character::UseBB_Box()
 	cout << "." << endl;
 	Sleep(1000);
 
-	if (prize >= 1 && prize <= 5)
+	if (prize >= 1 && prize <= 20)
 	{
 		_PetTheif++;
 		cout << "상자에 그려진 소환진에서 애완도둑이 소환되었습니다." << endl;
-		cout << "애완 도둑은 모든 상황에서 골드를 습득할 때 10%의 추가 골드를 획득합니다." << endl;
+		cout << "애완 도둑은 모든 상황에서 골드를 습득할 때 1명 당 10%의 추가 골드를 획득합니다." << endl;
 		cout << "현재 애완 도둑이 " << _PetTheif << "명 있습니다." << endl;
 	}
 	else
@@ -226,6 +237,11 @@ void Character::PrizeGarbage() const
 		cout << "피가 묻어있다. 누군가를 때린 것 같다..." << endl;
 	}
 	cout << "그다지 쓸모는 없어보인다. 던전 구석에 버리자." << endl;
+}
+
+void Character::SetLevel(int Level)
+{
+	_CharacterLevel = Level;
 }
 
 Character::~Character()		// 소멸자
