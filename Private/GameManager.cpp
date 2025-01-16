@@ -45,6 +45,11 @@ void GameManager::GamePlaying()
 			{
 				_MapLevel++;
 			}
+			else
+			{
+				GameOver();
+				break;
+			}
 			continue;
 		}
 		if (choice == "2")
@@ -68,6 +73,11 @@ void GameManager::GamePlaying()
 		}
 		cout << "잘못 입력하셨습니다." << endl;
 	}
+}
+
+void GameManager::GameOver()
+{
+	cout << "전투에서 패배해 게임이 종료됩니다." << endl;
 }
 
 int GameManager::GetMapLevel() const

@@ -15,6 +15,7 @@ public:
 	void GamePlaying();
 	int GetMapLevel() const;
 	void SetMapLevel();
+	void GameOver();
 	~GameManager();
 
 	void EncounterBossMonster();
