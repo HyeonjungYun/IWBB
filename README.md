@@ -61,7 +61,7 @@ IWBB
 ┃┣ DungeonManager.cpp
 ┃┣ MapManager.cpp
 ┃┣ StoreManager.cpp
-┃┣ main.cpp
+┃┗ main.cpp
 ┣ .gitignore
 ┣ IWBB.sln
 ┣ IWBB.vcxproj
