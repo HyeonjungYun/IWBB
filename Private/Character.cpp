@@ -42,7 +42,8 @@ void Character::SetMaxHP(int MaxHP)
 
 int Character::GetAttack() const 
 { 
-	return _CharacterAttack; 
+	int AttackValue = CreateRandomValue(_CharacterAttack - _CharacterLevel * 2, _CharacterAttack + _CharacterLevel * 2);
+	return AttackValue;
 }
 
 void Character::SetAttack(int Attack)
@@ -59,12 +60,17 @@ void Character::IncreaseEXP(int TempEXP)	// 경험치 획득 시 경험치 증�
 {
 	_CharacterEXP += TempEXP;
 
-	if (_CharacterEXP > 1000) _CharacterEXP = 1000;
+	if (_CharacterEXP > (11 - _CharacterLevel) * 100) _CharacterEXP = (11 - _CharacterLevel) * 100;
 }
 
 int Character::GetGold() const	
 {
 	return _CharacterGold;
+}
+
+int Character::GetLevel() const
+{
+	return _CharacterLevel;
 }
 
 void Character::IncreaseGold(int TempGold)	// 골드 획득 시 골드 증가

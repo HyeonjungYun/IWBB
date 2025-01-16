@@ -16,10 +16,13 @@ public:
 	int GetMapLevel() const;
 	void SetMapLevel();
 	~GameManager();
+
+	void EncounterBossMonster();
 private:
 	Character* _Character;
 	StoreManager* _StoreManager;
 	int _MapLevel;
+	bool _IsGameClear;
 };
 
 #endif

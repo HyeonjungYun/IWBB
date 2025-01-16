@@ -21,6 +21,7 @@ public:
     int GetEXP() const;
     void IncreaseEXP(int TempEXP);
     int GetGold() const;
+    int GetLevel() const;
     void IncreaseGold(int TempGold);
     void TakeDamage(int damage);
     void CharacterLevelUp();

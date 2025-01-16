@@ -2,6 +2,7 @@
 
 Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
 {
+    _DungeonMapLevel = MapLevel;
     if (MonsterType == MonsterList::ATTACKER)
     {
         _Monstername = " ";
@@ -32,6 +33,16 @@ Monster::Monster(int MapLevel, MonsterList::Monster MonsterType)
         _MonsterAttack = 10 + (MapLevel * 5);
         _TypeID = MonsterList::TANKER;
     }
+    if (MonsterType == MonsterList::BOSS)
+    {
+        _Monstername = "BigBalls 드래곤";
+        _MonsterMaxHP = 1300;
+        _MonsterHP = _MonsterMaxHP;
+        _MonsterAttack = 999999;
+        _MonsterEXP = 0;
+        _MonsterGold = 0;
+        _TypeID = MonsterList::BOSS;
+    }
 }
 
 string Monster::GetName()
@@ -56,7 +67,9 @@ int Monster::GetEXP()
 
 int Monster::GetAttack()
 {
-    return _MonsterAttack;
+    int AttackValue = CreateRandomValue(_MonsterAttack - _DungeonMapLevel * 2, _MonsterAttack + _DungeonMapLevel * 2);
+
+    return AttackValue;
 }
 
 void Monster::PrintMonster() const
