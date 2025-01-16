@@ -12,7 +12,7 @@
 
 #define ITEM_SIZE 1
 #define POTION_GOLD 100
-#define LEVEL_COUPON_GOLD 1000
+#define LEVEL_COUPON_GOLD 500
 #define BB_BOX_GOLD 50
 
 using namespace std;
